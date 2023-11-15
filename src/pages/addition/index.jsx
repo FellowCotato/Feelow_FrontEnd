@@ -18,7 +18,7 @@ const AdditionRole = () => {
   };
 
   return (
-    <FlexBox style={{ width: "100vw", height: "100vh" }}>
+    <FlexBox style={{ width: "100vw", height: "100vh", backgroundColor: " #FFFBF8" }}>
       <AdditionTotalBox>
         <LogoName>Feelow</LogoName>
         <AdditionLabel>학생/선생님을 선택해주세요.</AdditionLabel>
