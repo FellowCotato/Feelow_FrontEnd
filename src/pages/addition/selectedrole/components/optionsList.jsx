@@ -1,0 +1,57 @@
+// 드롭다운 리스트 정리
+
+export const OptionsSchool = [
+  { value: "서울고등학교", label: "서울고등학교" },
+  { value: "서울대학교사범대학부설고등학교", label: "서울대학교사범대학부설고등학교" },
+  { value: "서울문명여자고등학교", label: "서울문명여자고등학교" },
+  { value: "서울세종고등학교", label: "서울세종고등학교" },
+  { value: "서울여자고등학교", label: "서울여자고등학교" },
+];
+export const OptionsGrade = [
+  { value: "1학년", label: "1학년" },
+  { value: "2학년", label: "2학년" },
+  { value: "3학년", label: "3학년" },
+];
+export const OptionsClass = [
+  { value: "1반", label: "1반" },
+  { value: "2반", label: "2반" },
+  { value: "3반", label: "3반" },
+  { value: "4반", label: "4반" },
+  { value: "5반", label: "5반" },
+  { value: "6반", label: "6반" },
+  { value: "7반", label: "7반" },
+  { value: "8반", label: "8반" },
+  { value: "9반", label: "9반" },
+];
+export const OptionsNumber = [
+  { value: "1번", label: "1번" },
+  { value: "2번", label: "2번" },
+  { value: "3번", label: "3번" },
+  { value: "4번", label: "4번" },
+  { value: "5번", label: "5번" },
+  { value: "6번", label: "6번" },
+  { value: "7번", label: "7번" },
+  { value: "8번", label: "8번" },
+  { value: "9번", label: "9번" },
+  { value: "10번", label: "10번" },
+  { value: "11번", label: "11번" },
+  { value: "12번", label: "12번" },
+  { value: "13번", label: "13번" },
+  { value: "14번", label: "14번" },
+  { value: "15번", label: "15번" },
+  { value: "16번", label: "16번" },
+  { value: "17번", label: "17번" },
+  { value: "18번", label: "18번" },
+  { value: "19번", label: "19번" },
+  { value: "20번", label: "20번" },
+  { value: "21번", label: "21번" },
+  { value: "22번", label: "22번" },
+  { value: "23번", label: "23번" },
+  { value: "24번", label: "24번" },
+  { value: "25번", label: "25번" },
+  { value: "26번", label: "26번" },
+  { value: "27번", label: "27번" },
+  { value: "28번", label: "28번" },
+  { value: "29번", label: "29번" },
+  { value: "30번", label: "30번" },
+];
