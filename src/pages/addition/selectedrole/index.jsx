@@ -1,25 +1,50 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { AdditionTotalBox, FlexBox, LogoName } from "../style";
-import { OtherLabel, RoleLabel, TextInput } from "./style";
+import { CheckRegx, OtherLabel, RoleLabel, TextInput } from "./style";
 import Select from "react-select";
 import { OptionsSchool, OptionsGrade, OptionsClass, OptionsNumber } from "./components/optionsList";
 import { BlankButton } from "../../../components/button";
 
 const PlusAddition = () => {
   // 값이 결정되었는데 boolean 확인
+  const [isSchool, setIsSchool] = useState(false);
+  const [isGrade, setIsGrade] = useState(false);
+  const [isClass, setIsClass] = useState(false);
+  const [isNumber, setIsNumber] = useState(false);
+  const [isName, setIsName] = useState(false);
+  const [isNickname, setIsNickname] = useState(false);
 
   // 유저 정보 저장
   const { state } = useLocation();
-  const [userInfo, setUserInfo] = useState({
-    role: state.role,
-    school: "",
-    grade: "",
-    class: "",
-    number: "",
-    name: "",
-    nickname: "",
-  });
+  const [userInfo, setUserInfo] = useState({});
+
+  useEffect(() => {
+    if (state.role === "선생님") {
+      setIsNumber(true);
+      setIsNickname(true);
+      setUserInfo({
+        role: state.role,
+        school: "",
+        grade: "",
+        class: "",
+        number: "",
+        name: "",
+        nickname: "",
+      });
+    } else {
+      setUserInfo({
+        role: state.role,
+        school: "",
+        grade: "",
+        class: "",
+        number: "",
+        name: "",
+        nickname: "",
+      });
+    }
+  }, [state.role]);
+
   const { name, nickname } = userInfo;
 
   // 선택된 값 저장
@@ -34,6 +59,7 @@ const PlusAddition = () => {
       ...userInfo,
       school: selectedOptionSchool.label,
     });
+    setIsSchool(true);
   };
   const handleChangeGrade = (selectedOptionGrade) => {
     setSelectedOptionGrade(selectedOptionGrade);
@@ -41,6 +67,7 @@ const PlusAddition = () => {
       ...userInfo,
       grade: selectedOptionGrade.label,
     });
+    setIsGrade(true);
   };
   const handleChangeClass = (selectedOptionClass) => {
     setSelectedOptionClass(selectedOptionClass);
@@ -48,6 +75,7 @@ const PlusAddition = () => {
       ...userInfo,
       class: selectedOptionClass.label,
     });
+    setIsClass(true);
   };
   const handleChangeNumber = (selectedOptionNumber) => {
     setSelectedOptionNumber(selectedOptionNumber);
@@ -55,13 +83,34 @@ const PlusAddition = () => {
       ...userInfo,
       number: selectedOptionNumber.label,
     });
+    setIsNumber(true);
   };
-  const TextChange = (e) => {
+  const handleChangeName = (e) => {
     const { name, value } = e.target;
     setUserInfo({
       ...userInfo,
       [name]: value,
     });
+    if (value !== "") {
+      setIsName(true);
+    } else {
+      setIsName(false);
+    }
+  };
+  const handleChangeNickname = (e) => {
+    const { name, value } = e.target;
+    setUserInfo({
+      ...userInfo,
+      [name]: value,
+    });
+    if (value !== "") {
+      setIsNickname(true);
+    } else {
+      setIsNickname(false);
+    }
+    if (value.length < 2) {
+      setIsNickname(false);
+    }
   };
 
   // react-select 몇가지 설정
@@ -222,6 +271,14 @@ const PlusAddition = () => {
     }),
   };
 
+  const signUpButton = () => {
+    if (!isSchool || !isGrade || !isClass || !isNumber || !isName || !isNickname) {
+      alert("모든 항목을 작성해주세요!");
+    } else {
+      alert("회원가입 되었습니다!\n다시 로그인을 진행해주세요");
+    }
+  };
+
   return (
     <FlexBox style={{ width: "100vw", backgroundColor: " #FFFBF8" }}>
       <AdditionTotalBox>
@@ -231,7 +288,7 @@ const PlusAddition = () => {
           <OtherLabel marginTop="66px">학교를 알려주세요.</OtherLabel>
           <FlexBox>
             <Select
-              placeholder="학교를 선택해주세요."
+              placeholder="학교를 선택해주세요"
               value={selectedOptionSchool}
               options={OptionsSchool}
               isSearchable
@@ -299,7 +356,7 @@ const PlusAddition = () => {
             placeholder="여기에 입력해주세요"
             name="name"
             value={name}
-            onChange={TextChange}
+            onChange={handleChangeName}
             autocomplete="off"
           />
 
@@ -307,25 +364,37 @@ const PlusAddition = () => {
             <>
               <OtherLabel marginTop="67px">닉네임을 정해주세요.</OtherLabel>
               <TextInput
-                style={{ marginTop: "31px" }}
-                placeholder="두 글자 이상 입력해주세요."
+                marginTop="31px"
+                placeholder="여기에 입력해주세요"
                 name="nickname"
                 value={nickname}
-                onChange={TextChange}
+                onChange={handleChangeNickname}
                 autocomplete="off"
               />
             </>
           ) : (
             <></>
           )}
-          <p>두 글자 이상 입력해주세요.</p>
-          <BlankButton style={{ margin: "36px 0px 89px" }}></BlankButton>
-          <div>{userInfo.role}</div>
-          <div>{userInfo.school}</div>
-          <div>{userInfo.grade}</div>
-          <div>{userInfo.class}</div>
-          <div>{userInfo.name}</div>
-          {state.role === "학생" ? <div>{userInfo.nickname}</div> : <></>}
+          {isNickname ? (
+            <CheckRegx
+              marginTop="14px"
+              style={{ marginLeft: "18px", alignSelf: "flex-start" }}
+            ></CheckRegx>
+          ) : (
+            <CheckRegx marginTop="14px" style={{ alignSelf: "flex-start" }}>
+              *두 글자 이상 입력해 주세요.
+            </CheckRegx>
+          )}
+          <BlankButton
+            backgroundColor="#D0D0D0"
+            color="#fff"
+            width="279px"
+            borderColor="#D0D0D0"
+            style={{ margin: "37px 0px 89px" }}
+            onClick={signUpButton}
+          >
+            시작하기
+          </BlankButton>
         </FlexBox>
       </AdditionTotalBox>
     </FlexBox>

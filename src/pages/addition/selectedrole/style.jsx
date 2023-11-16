@@ -42,6 +42,8 @@ export const TextInput = styled.input`
   font-weight: 500;
   letter-spacing: 0.32px;
   outline: none;
+  margin-top: ${(props) => props.marginTop || "0px"};
+
   &:hover,
   &:focus,
   &:active {
@@ -49,5 +51,20 @@ export const TextInput = styled.input`
   }
   ::placeholder {
     color: #b7b7b7;
+  }
+`;
+
+export const CheckRegx = styled.p`
+  height: 14px;
+  color: #ff6b6b;
+  text-align: center;
+  font-family: "Pretendard";
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.32px;
+  margin-top: ${(props) => props.marginTop || "0px"};
+  margin-left: 22px;
+  @media screen and (max-width: 555px) {
+    margin-left: 9vw;
   }
 `;
