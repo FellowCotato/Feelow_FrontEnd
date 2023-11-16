@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+// 속이 비어있는 버튼
 export const BlankButton = styled.button`
   padding: 14px 0px;
   border-radius: 40px;
