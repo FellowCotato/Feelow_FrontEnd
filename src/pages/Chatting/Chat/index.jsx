@@ -1,5 +1,5 @@
 import React from "react";
-import defaultCharacter from "../../../assets/defaultCharacter.svg";
+import feelow_character from "../../../assets/feelow_character.png";
 import {
   BotImg,
   ChatContainer,
@@ -13,7 +13,7 @@ const Chat = ({ message }) => {
   const isBot = message.sender === "bot";
 
   const profile = isBot ? (
-    <BotImg src={defaultCharacter} alt="bot-character" />
+    <BotImg src={feelow_character} alt="bot-character" />
   ) : (
     <UserCircle>
       <UserName>{message.sender}</UserName>

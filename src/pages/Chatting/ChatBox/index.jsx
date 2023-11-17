@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { Form, SendButton, TextArea } from "./styles";
-import chatButton from "../../../assets/chatButton.svg";
+import chat_button from "../../../assets/chat_button.svg";
 
 const ChatBox = ({ user, messages, setMessages, messageId, setMessageId }) => {
   const [chat, setChat] = useState("");
@@ -45,7 +45,7 @@ const ChatBox = ({ user, messages, setMessages, messageId, setMessageId }) => {
         placeholder="채팅을 입력하세요."
       />
       <SendButton type="submit" disabled={!chat?.trim()}>
-        <img src={chatButton} alt="send-button" />
+        <img src={chat_button} alt="send-button" />
       </SendButton>
     </Form>
   );

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import Header from "../../layouts/Header/Header";
 import { ChattingWrapper, ChattingContainer, ButtonContainer, Button } from "./styles";
+import { LogoName } from "../addition/style";
 import ChatList from "./ChatList";
 import ChatBox from "./ChatBox";
-import pointImg from "../../assets/pointImg.svg";
-import storeImg from "../../assets/storeImg.svg";
-import profileImg from "../../assets/profileImg.svg";
-import calendarImg from "../../assets/calendarImg.svg";
+import point_img from "../../assets/point_img.svg";
+import store_img from "../../assets/store_img.svg";
+import profile_img from "../../assets/profile_img.svg";
+import calendar_img from "../../assets/calendar_img.svg";
 
 /*
 // eslint-disable <- eslint 무시 설정
@@ -27,20 +27,20 @@ const Chatting = () => {
 
   return (
     <ChattingWrapper>
-      <Header />
+      <LogoName>Feelow</LogoName>
       <ChattingContainer>
         <ButtonContainer>
           <Button position="left">
-            <img src={pointImg} alt="point" />
+            <img src={point_img} alt="point" />
           </Button>
           <Button position="left">
-            <img src={storeImg} alt="store" />
+            <img src={store_img} alt="store" />
           </Button>
           <Button position="right">
-            <img src={profileImg} alt="profil" />
+            <img src={profile_img} alt="profil" />
           </Button>
           <Button position="right">
-            <img src={calendarImg} alt="calendar" />
+            <img src={calendar_img} alt="calendar" />
           </Button>
         </ButtonContainer>
         <ChatList messages={messages} />
