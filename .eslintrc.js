@@ -26,7 +26,10 @@ module.exports = {
     sourceType: "module",
   },
   plugins: ["react"],
-  rules: {},
+  rules: {
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off", // props관련 eslint 에러
+  },
   settings: {
     react: { version: "detect" },
   },
