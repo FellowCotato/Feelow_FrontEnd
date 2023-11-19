@@ -40,8 +40,8 @@ const Pattern = styled.div`
     css`
       width: 25.26vw;
       height: 35.9vh;
-      right: -10.26vw;
-      bottom: -5.19vh;
+      right: 0vw;
+      bottom: 0vh;
     `}
 `;
 
