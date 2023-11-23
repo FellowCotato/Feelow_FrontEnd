@@ -3,9 +3,9 @@ import { useLocation } from "react-router-dom";
 import { AdditionTotalBox, FlexBox, LogoName } from "../style";
 import { CheckRegx, OtherLabel, RoleLabel, TextInput } from "./style";
 import Select from "react-select";
-import { OptionsSchool, OptionsGrade, OptionsClass, OptionsNumber } from "./components/optionsList";
+import { OptionsGrade, OptionsClass, OptionsNumber } from "./components/OptionsList";
 import { BlankButton } from "../../../components/button";
-
+import data from "./components/School.json";
 const PlusAddition = () => {
   // 값이 결정되었는데 boolean 확인
   const [isSchool, setIsSchool] = useState(false);
@@ -113,12 +113,20 @@ const PlusAddition = () => {
     }
   };
 
+  const customFilter = (option, rawInput) => {
+    const normalizedOption = option.label.toLowerCase();
+    const normalizedInput = rawInput.toLowerCase();
+
+    return normalizedOption.startsWith(normalizedInput);
+  };
+
   // react-select 몇가지 설정
   const fullWidthStyles = {
     control: (provided, state) => ({
       ...provided,
       marginTop: "31px",
       width: "85vw",
+
       maxWidth: "500px",
       height: "49px",
       borderRadius: "18px",
@@ -169,7 +177,7 @@ const PlusAddition = () => {
   const oneThirdWidthStyles = {
     control: (provided, state) => ({
       ...provided,
-      margin: "31px 1vw 0px",
+      margin: "31px 0.8vw 0px",
       paddingLeft: "6px",
       width: "27vw",
       maxWidth: "151px",
@@ -290,11 +298,12 @@ const PlusAddition = () => {
             <Select
               placeholder="학교를 선택해주세요"
               value={selectedOptionSchool}
-              options={OptionsSchool}
+              options={data}
               isSearchable
               onChange={handleChangeSchool}
               styles={fullWidthStyles}
               menuPlacement="bottom"
+              filterOption={customFilter}
             />
           </FlexBox>
           <OtherLabel marginTop="66px">학년/반을 알려주세요.</OtherLabel>
