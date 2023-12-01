@@ -78,4 +78,12 @@ export const StartButton = styled.button`
   border: 0px;
   background: var(--Point-Color, #d7ab6e);
   box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.2);
+
+  color: #fff;
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.4px;
 `;

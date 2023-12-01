@@ -8,12 +8,17 @@ import {
   Text,
   StartButton,
 } from "./style";
+import { useNavigate } from "react-router-dom";
 
 import feelow_logo from "../../assets/home_logo.png";
 
 import Background from "../../components/BackGround";
 
 const Home = () => {
+  const navigate = useNavigate();
+  const handleStartClick = () => {
+    navigate("/login");
+  };
   return (
     <FlexBox>
       <PageContainer>
@@ -25,7 +30,7 @@ const Home = () => {
         <LogoContainer>
           <img src={feelow_logo} alt="feelow_logo" />
           <ButtonContainer>
-            <StartButton>시작하기</StartButton>
+            <StartButton onClick={handleStartClick}>시작하기</StartButton>
           </ButtonContainer>
         </LogoContainer>
       </PageContainer>
