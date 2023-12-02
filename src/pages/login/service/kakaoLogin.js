@@ -1,14 +1,17 @@
 /* eslint-disable */
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useRecoilState } from "recoil";
+import { userIdState, userNicknameState } from "../../../recoil/Auth";
 
 const KakaoLoginComponent = () => {
-  const [userEmail, setUserEmail] = useState("");
-  const [expiresIn, setExpiresIn] = useState("");
-  const [userId, setUserId] = useState("");
-
   const CLIENT_ID = process.env.REACT_APP_KAKAO_APP_KEY;
   const REDIRECT_URI = process.env.REACT_APP_REDIRECT_URL;
+
+  const [userId, setUserId] = useRecoilState(userIdState);
+  const [userNickname, setUserNickname] = useRecoilState(userNicknameState);
+  const [userEmail, setUserEmail] = useState("");
+  const [userConnectedAt, setUserConnectedAt] = useState("");
 
   useEffect(() => {
     const code = new URL(window.location.href).searchParams.get("code"); // 인가 코드 추출
@@ -52,13 +55,7 @@ const KakaoLoginComponent = () => {
       .then((response) => response.json())
       .then((data) => {
         const accessToken = data.access_token;
-        const refresh_token = data.refresh_token;
-        const refresh_token_expires_in = data.refresh_token_expires_in;
-        // 현재 시간에 expires_in 초를 더하여 계산
-        var currentDate = new Date();
-        currentDate.setSeconds(currentDate.getSeconds() + data.expires_in);
-        setExpiresIn(currentDate);
-        fetchUserInfo(accessToken, refresh_token, refresh_token_expires_in);
+        fetchUserInfo(accessToken);
       });
   };
 
@@ -71,19 +68,16 @@ const KakaoLoginComponent = () => {
           "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
         },
       });
-
       const data = response.data;
-      setUserEmail(data.kakao_account.email);
       setUserId(data.id);
-      return userEmail, userId;
+      setUserNickname(data.kakao_account.userNickname);
+      setUserEmail(data.kakao_account.email);
+      setUserConnectedAt(data.connected_at);
     } catch (error) {
       console.error("Kakao user info error:", error);
     }
   };
-
   return {
-    userId,
-    userEmail,
     getKakaoCode,
   };
 };
