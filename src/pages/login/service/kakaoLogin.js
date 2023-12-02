@@ -1,12 +1,15 @@
 /* eslint-disable */
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useRecoilState } from "recoil";
 import { userIdState, userNicknameState } from "../../../recoil/Auth";
+import checkMemberStatus from "../../../utils/Login";
 
 const KakaoLoginComponent = () => {
   const CLIENT_ID = process.env.REACT_APP_KAKAO_APP_KEY;
   const REDIRECT_URI = process.env.REACT_APP_REDIRECT_URL;
+  const navigate = useNavigate();
 
   const [userId, setUserId] = useRecoilState(userIdState);
   const [userNickname, setUserNickname] = useRecoilState(userNicknameState);
@@ -71,8 +74,11 @@ const KakaoLoginComponent = () => {
       const data = response.data;
       setUserId(data.id);
       setUserNickname(data.kakao_account.userNickname);
-      setUserEmail(data.kakao_account.email);
       setUserConnectedAt(data.connected_at);
+      setUserEmail(data.kakao_account.email);
+      // 회원 여부 판별하는 함수
+      const path = checkMemberStatus(userId, userEmail, userNickname, userConnectedAt);
+      navigate(path);
     } catch (error) {
       console.error("Kakao user info error:", error);
     }
