@@ -1,12 +1,5 @@
 // 드롭다운 리스트 정리
 
-export const OptionsSchool = [
-  { value: "서울고등학교", label: "서울고등학교" },
-  { value: "서울대학교사범대학부설고등학교", label: "서울대학교사범대학부설고등학교" },
-  { value: "서울문명여자고등학교", label: "서울문명여자고등학교" },
-  { value: "서울세종고등학교", label: "서울세종고등학교" },
-  { value: "서울여자고등학교", label: "서울여자고등학교" },
-];
 export const OptionsGrade = [
   { value: "1학년", label: "1학년" },
   { value: "2학년", label: "2학년" },
