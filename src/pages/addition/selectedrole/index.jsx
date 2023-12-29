@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { AdditionTotalBox, FlexBox, LogoName } from "../style";
 import { CheckRegx, OtherLabel, RoleLabel, TextInput } from "./style";
 import Select from "react-select";
-import { OptionsGrade, OptionsClass, OptionsNumber } from "./components/OptionsList";
+import { OptionsGrade, OptionsClass, OptionsNumber } from "./components/optionsList.jsx";
 import { BlankButton } from "../../../components/button";
 import data from "./components/School.json";
 const PlusAddition = () => {
