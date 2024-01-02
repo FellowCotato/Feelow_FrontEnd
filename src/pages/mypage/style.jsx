@@ -105,6 +105,13 @@ export const Modal = styled.div`
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.4);
 `;
 
+export const ModalXButton = styled.img`
+  position: absolute;
+  top: 20px;
+  right: 26px;
+  width: 36px;
+`;
+
 export const ModalHeader = styled.h3`
   color: var(--Main-Font, #2c2c2c);
   text-align: center;

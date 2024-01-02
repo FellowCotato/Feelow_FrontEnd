@@ -14,11 +14,13 @@ import {
   Modal,
   ModalHeader,
   ModalParagraph,
+  ModalXButton,
   Placeholder,
   UserInfoBox,
 } from "./style";
 import characterImg from "../../assets/character_img.svg";
 import circleImg from "../../assets/circle_img.svg";
+import xButtonImg from "../../assets/xButton_img.svg";
 import ButtonBox from "../../layouts/ButtonBox";
 
 const MyPage = () => {
@@ -90,16 +92,21 @@ const MyPage = () => {
             <InfoInput>빛나는물</InfoInput>
           </InfoDiv>
           <InfoDiv margin="50px 0px 0px" padding="0px 0px 85px 0px">
-            <Button color="#db6b6b">로그아웃</Button>
+            <Button onClick={handleLogOutModal} color="#db6b6b">
+              로그아웃
+            </Button>
             <Button>회원탈퇴</Button>
           </InfoDiv>
         </UserInfoBox>
         {isLogOutModal ? (
           <Modal>
+            <ModalXButton onClick={handleLogOutModal} src={xButtonImg} alt="xButton" />
             <ModalHeader margin="44px 0px 0px 0px">로그아웃</ModalHeader>
             <ModalParagraph margin="50px 0px 0px 0px">정말 로그아웃 하시겠습니까?</ModalParagraph>
             <BtnDiv>
-              <Btn margin="59px 0px 0px 0px">취소</Btn>
+              <Btn onClick={handleLogOutModal} margin="59px 0px 0px 0px">
+                취소
+              </Btn>
               <Btn backgroundColor="#D7AB6E" color="#fff" margin="59px 30.5px 0px 15.5px">
                 로그아웃
               </Btn>
