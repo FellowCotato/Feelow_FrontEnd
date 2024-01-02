@@ -14,6 +14,7 @@ import {
   Modal,
   ModalHeader,
   ModalParagraph,
+  ModalUnderGrayParagraph,
   ModalXButton,
   Placeholder,
   UserInfoBox,
@@ -27,12 +28,19 @@ const MyPage = () => {
   const [isLogOutModal, setIsLogOutModal] = useState(true);
   const [isSignOutModal, setIsSignOutModal] = useState(false);
 
-  const handleLogOutModal = () => {
-    setIsLogOutModal(!isLogOutModal);
+  const handleOpenLogOutModal = () => {
+    setIsLogOutModal(true);
+    setIsSignOutModal(false);
   };
-
-  const handleSignOutModal = () => {
-    setIsSignOutModal(!isSignOutModal);
+  const handleCloseLogOutModal = () => {
+    setIsLogOutModal(false);
+  };
+  const handleOpenSignOutModal = () => {
+    setIsSignOutModal(true);
+    setIsLogOutModal(false);
+  };
+  const handleCloseSignOutModal = () => {
+    setIsSignOutModal(false);
   };
 
   return (
@@ -92,23 +100,43 @@ const MyPage = () => {
             <InfoInput>빛나는물</InfoInput>
           </InfoDiv>
           <InfoDiv margin="50px 0px 0px" padding="0px 0px 85px 0px">
-            <Button onClick={handleLogOutModal} color="#db6b6b">
+            <Button onClick={handleOpenLogOutModal} color="#db6b6b">
               로그아웃
             </Button>
-            <Button>회원탈퇴</Button>
+            <Button onClick={handleOpenSignOutModal}>회원탈퇴</Button>
           </InfoDiv>
         </UserInfoBox>
         {isLogOutModal ? (
           <Modal>
-            <ModalXButton onClick={handleLogOutModal} src={xButtonImg} alt="xButton" />
+            <ModalXButton onClick={handleCloseLogOutModal} src={xButtonImg} alt="xButton" />
             <ModalHeader margin="44px 0px 0px 0px">로그아웃</ModalHeader>
             <ModalParagraph margin="50px 0px 0px 0px">정말 로그아웃 하시겠습니까?</ModalParagraph>
             <BtnDiv>
-              <Btn onClick={handleLogOutModal} margin="59px 0px 0px 0px">
+              <Btn onClick={handleCloseLogOutModal} margin="59px 0px 0px 0px">
                 취소
               </Btn>
               <Btn backgroundColor="#D7AB6E" color="#fff" margin="59px 30.5px 0px 15.5px">
                 로그아웃
+              </Btn>
+            </BtnDiv>
+          </Modal>
+        ) : (
+          <></>
+        )}
+        {isSignOutModal ? (
+          <Modal>
+            <ModalXButton onClick={handleCloseSignOutModal} src={xButtonImg} alt="xButton" />
+            <ModalHeader margin="44px 0px 0px 0px">회원탈퇴</ModalHeader>
+            <ModalParagraph margin="42px 0px 0px 0px">정말 탈퇴하시겠습니까?</ModalParagraph>
+            <ModalUnderGrayParagraph margin="10px 0px 0px 0px">
+              탈퇴 시 계정의 모든 정보는 삭제됩니다.
+            </ModalUnderGrayParagraph>
+            <BtnDiv>
+              <Btn onClick={handleCloseSignOutModal} margin="40px 0px 0px 0px">
+                취소
+              </Btn>
+              <Btn backgroundColor="#D7AB6E" color="#fff" margin="40px 30.5px 0px 15.5px">
+                회원탈퇴
               </Btn>
             </BtnDiv>
           </Modal>

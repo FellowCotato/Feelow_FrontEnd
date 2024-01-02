@@ -132,6 +132,16 @@ export const ModalParagraph = styled.p`
   margin: ${(props) => props.margin || "0px"};
 `;
 
+export const ModalUnderGrayParagraph = styled.p`
+  color: var(--Sub-Font, #b0b0b0);
+  text-align: center;
+  font-family: "Pretendard";
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.28px;
+  margin: ${(props) => props.margin || "0px"};
+`;
+
 export const BtnDiv = styled.div`
   text-align: end;
 `;
