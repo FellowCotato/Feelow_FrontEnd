@@ -10,6 +10,7 @@ import {
   InfoDiv,
   InfoInput,
   InfoLabel,
+  InfoLabelFixedWidth,
   LogoName,
   Modal,
   ModalHeader,
@@ -25,7 +26,7 @@ import xButtonImg from "../../assets/xButton_img.svg";
 import ButtonBox from "../../layouts/ButtonBox";
 
 const MyPage = () => {
-  const [isLogOutModal, setIsLogOutModal] = useState(true);
+  const [isLogOutModal, setIsLogOutModal] = useState(false);
   const [isSignOutModal, setIsSignOutModal] = useState(false);
 
   const handleOpenLogOutModal = () => {
@@ -70,14 +71,14 @@ const MyPage = () => {
             <InfoInput>서울대학교사범대학부설고등학교</InfoInput>
           </InfoDiv>
           <InfoDiv margin="33px 0px 0px 0px">
-            <InfoLabel>학년/반/번호</InfoLabel>
-            <InfoInput justifyContent="space-around" width="32%" maxWidth="63px">
+            <InfoLabelFixedWidth>학년/반/번호</InfoLabelFixedWidth>
+            <InfoInput justifyContent="space-around" width="28%" maxWidth="63px">
               2<Placeholder>학년</Placeholder>
             </InfoInput>
             <InfoInput
               justifyContent="space-around"
               margin="0px 0px 0px 6px"
-              width="32%"
+              width="28%"
               maxWidth="63px"
             >
               2<Placeholder>반</Placeholder>
@@ -85,7 +86,7 @@ const MyPage = () => {
             <InfoInput
               justifyContent="space-around"
               margin="0px 0px 0px 6px"
-              width="32%"
+              width="28%"
               maxWidth="63px"
             >
               2<Placeholder>번호</Placeholder>

@@ -58,12 +58,26 @@ export const InfoLabel = styled.label`
   font-weight: 600;
 `;
 
+export const InfoLabelFixedWidth = styled.label`
+  margin: ${(props) => props.margin || "0px"};
+  padding-left: 18px;
+  width: 146px;
+  height: 26px;
+  color: var(--Main-Font, #2c2c2c);
+  font-family: "Pretendard";
+  font-size: 22px;
+  font-weight: 600;
+  @media screen and (max-width: 480px) {
+    width: 270px;
+  }
+`;
+
 export const InfoInput = styled.div`
   display: flex;
   align-items: center;
   justify-content: ${(props) => props.justifyContent || "none"};
   max-width: ${(props) => props.maxWidth || "258px"};
-  width: ${(props) => props.width || "140%"};
+  width: ${(props) => props.width || "110%"};
   height: 43px;
   padding: 0px 0px 0px 24px;
   border-radius: 20px;
