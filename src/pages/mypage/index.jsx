@@ -1,32 +1,51 @@
-import React from "react";
+/* eslint-disable no-unused-vars */
+import React, { useState } from "react";
 import {
   AdditionTotalBox,
+  Btn,
+  BtnDiv,
+  Button,
   FlexBox,
   Img,
   InfoDiv,
   InfoInput,
   InfoLabel,
   LogoName,
+  Modal,
+  ModalHeader,
+  ModalParagraph,
   Placeholder,
   UserInfoBox,
 } from "./style";
 import characterImg from "../../assets/character_img.svg";
 import circleImg from "../../assets/circle_img.svg";
+import ButtonBox from "../../layouts/ButtonBox";
 
 const MyPage = () => {
+  const [isLogOutModal, setIsLogOutModal] = useState(true);
+  const [isSignOutModal, setIsSignOutModal] = useState(false);
+
+  const handleLogOutModal = () => {
+    setIsLogOutModal(!isLogOutModal);
+  };
+
+  const handleSignOutModal = () => {
+    setIsSignOutModal(!isSignOutModal);
+  };
+
   return (
     <>
       <FlexBox style={{ width: "100vw", flexDirection: "column", backgroundColor: " #FFFBF8" }}>
         <AdditionTotalBox>
           <FlexBox style={{ flexDirection: "column" }}>
             <LogoName>Feelow</LogoName>
-            <div style={{ height: "40px" }}>상단 메뉴바 가져와서 추가할 계획</div>
+            <ButtonBox />
           </FlexBox>
         </AdditionTotalBox>
         <UserInfoBox>
           <FlexBox>
             <Img
-              Top="220px"
+              Top="270px"
               width="210px"
               height="255px"
               zIndex="2"
@@ -70,7 +89,25 @@ const MyPage = () => {
             <InfoLabel>닉네임</InfoLabel>
             <InfoInput>빛나는물</InfoInput>
           </InfoDiv>
+          <InfoDiv margin="50px 0px 0px" padding="0px 0px 85px 0px">
+            <Button color="#db6b6b">로그아웃</Button>
+            <Button>회원탈퇴</Button>
+          </InfoDiv>
         </UserInfoBox>
+        {isLogOutModal ? (
+          <Modal>
+            <ModalHeader margin="44px 0px 0px 0px">로그아웃</ModalHeader>
+            <ModalParagraph margin="50px 0px 0px 0px">정말 로그아웃 하시겠습니까?</ModalParagraph>
+            <BtnDiv>
+              <Btn margin="59px 0px 0px 0px">취소</Btn>
+              <Btn backgroundColor="#D7AB6E" color="#fff" margin="59px 30.5px 0px 15.5px">
+                로그아웃
+              </Btn>
+            </BtnDiv>
+          </Modal>
+        ) : (
+          <></>
+        )}
       </FlexBox>
     </>
   );
