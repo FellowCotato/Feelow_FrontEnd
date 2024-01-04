@@ -2,37 +2,19 @@ import styled from "styled-components";
 
 export const ChatContainer = styled.div`
   display: flex;
-  justify-content: ${(props) => (props.isBot ? "flex-start" : "flex-end")};
+  justify-content: ${(props) => (props.sender === "bot" ? "start" : "end")};
 `;
 
 export const BotImg = styled.img`
   width: 68px;
-  height: 91.229px;
+  height: 88px;
   flex-shrink: 0;
-`;
+  background-color: transparent;
 
-export const UserCircle = styled.div`
-  width: 54px;
-  height: 54px;
-  border-radius: 50%;
-  flex-shrink: 0;
-  background-color: #b19b8f;
-  position: relative;
-`;
-
-export const UserName = styled.div`
-  color: #fff;
-  text-align: center;
-  font-family: Pretendard;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-  letter-spacing: 1px;
-
-  position: absolute;
-  top: 30%;
-  left: 16%;
+  @media only screen and (max-width: 768px) {
+    width: 44px;
+    height: 56px;
+  }
 `;
 
 export const ChatContentContainer = styled.div`
@@ -44,19 +26,31 @@ export const ChatContentContainer = styled.div`
 
   max-width: 50%;
   height: fit-content;
-  margin: 0px 16px 0px;
-
+  margin: 0px 16px 32px;
   border-radius: 20px;
-  background: #f7f0ea;
+  background: ${(props) => props.background};
+
+  @media only screen and (max-width: 768px) {
+    padding: 12px 18px;
+    gap: 10px;
+    border-radius: 12px;
+    max-width: 60%;
+    margin: 0px 16px 20px;
+  }
 `;
 
-export const ChatContent = styled.span`
-  color: var(--Main-Font, #2c2c2c);
-
+export const ChatContent = styled.p`
+  color: ${(props) => props.color};
   font-family: Pretendard;
-  font-size: 18px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   letter-spacing: 0.36px;
+
+  @media only screen and (max-width: 768px) {
+    font-size: 14px;
+    letter-spacing: 0.14px;
+    line-height: 17px;
+  }
 `;
