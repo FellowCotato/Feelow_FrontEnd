@@ -45,24 +45,43 @@ const ButtonBox = ({
     setIsCalendarActive(true);
   }, []);
 
+  const isChattingPage = useCallback(
+    () => !isStoreActive && !isProfileActive && !isCalendarActive,
+    [isStoreActive, isProfileActive, isCalendarActive],
+  );
+
   return (
     <ButtonWrapper>
       <ButtonContainer>
         <Cotton onClick={onClickCotton}>
-          <button className="cotton-button">
-            <img src={cotton} alt="cotton" />
-          </button>
+          <img src={cotton} alt="cotton" />
           <p className="cotton-counter">{`${cottonCount}개`}</p>
         </Cotton>
         <div className="button-container">
-          <Button onClick={onClickStore}>
-            <StoreImg fill={isStoreActive ? "#D7AB6E" : "#B0B0B0"} />
+          <Button
+            onClick={onClickStore}
+            color={isStoreActive ? "#D7AB6E" : isChattingPage() ? "#B19B8F" : "#B0B0B0"}
+          >
+            <StoreImg fill={isStoreActive ? "#D7AB6E" : isChattingPage() ? "#B19B8F" : "#B0B0B0"} />
+            <p>상점</p>
           </Button>
-          <Button onClick={onClickProfile}>
-            <ProfileImg fill={isProfileActive ? "#D7AB6E" : "#B0B0B0"} />
+          <Button
+            onClick={onClickProfile}
+            color={isProfileActive ? "#D7AB6E" : isChattingPage() ? "#B19B8F" : "#B0B0B0"}
+          >
+            <ProfileImg
+              fill={isProfileActive ? "#D7AB6E" : isChattingPage() ? "#B19B8F" : "#B0B0B0"}
+            />
+            <p>프로필</p>
           </Button>
-          <Button onClick={onClickCalendar}>
-            <CalendarImg fill={isCalendarActive ? "#D7AB6E" : "#B0B0B0"} />
+          <Button
+            onClick={onClickCalendar}
+            color={isCalendarActive ? "#D7AB6E" : isChattingPage() ? "#B19B8F" : "#B0B0B0"}
+          >
+            <CalendarImg
+              fill={isCalendarActive ? "#D7AB6E" : isChattingPage() ? "#B19B8F" : "#B0B0B0"}
+            />
+            <p>캘린더</p>
           </Button>
         </div>
       </ButtonContainer>
