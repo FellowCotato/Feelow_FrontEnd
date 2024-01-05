@@ -16,9 +16,19 @@ import Background from "../../components/BackGround";
 
 const Home = () => {
   const navigate = useNavigate();
+
   const handleStartClick = () => {
-    navigate("/login");
+    // 페이지 로딩 시 토큰을 확인하여 회원 여부 판단
+    const token = 0;
+    if (token) {
+      // 토큰이 있는 경우, 회원이므로 채팅 페이지로 이동
+      navigate("/chatting");
+    } else {
+      // 없는 경우, 로그인 페이지로 이동
+      navigate("/login");
+    }
   };
+
   return (
     <FlexBox>
       <PageContainer>

@@ -11,8 +11,8 @@ const KakaoLoginComponent = () => {
   const REDIRECT_URI = process.env.REACT_APP_REDIRECT_URL;
   const navigate = useNavigate();
 
-  const [userId, setUserId] = useRecoilState(userIdState);
-  const [userNickname, setUserNickname] = useRecoilState(userNicknameState);
+  const [userId, setUserId] = useState("");
+  const [userNickname, setUserNickname] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userConnectedAt, setUserConnectedAt] = useState("");
 
@@ -49,6 +49,7 @@ const KakaoLoginComponent = () => {
       .map((k) => encodeURIComponent(k) + "=" + encodeURIComponent(params[k]))
       .join("&");
 
+    console.log(query);
     fetch(`https://kauth.kakao.com/oauth/token?${query}`, {
       method: "POST",
       headers: {
@@ -62,23 +63,30 @@ const KakaoLoginComponent = () => {
       });
   };
 
-  // 유저 정보 받아오는 함수
-  const fetchUserInfo = async (accessToken) => {
-    try {
-      const response = await axios.get("https://kapi.kakao.com/v2/user/me", {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-          "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
-        },
-      });
-      const data = response.data;
-      setUserId(data.id);
-      setUserNickname(data.kakao_account.userNickname);
-      setUserConnectedAt(data.connected_at);
-      setUserEmail(data.kakao_account.email);
-      // 회원 여부 판별하는 함수
-      const path = checkMemberStatus(userId, userEmail, userNickname, userConnectedAt);
+ // 유저 정보 받아오는 함수
+const fetchUserInfo = async (accessToken) => {
+  try {
+    const response = await axios.get("https://kapi.kakao.com/v2/user/me", {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
+      },
+    });
+    const data = response.data;
+    setUserId(data.id);
+    setUserNickname(data.userNickname);
+    setUserConnectedAt(data.connected_at);
+    setUserEmail(data.kakao_account.email);
+
+    // 회원 여부 판별하는 함수
+    const path = await checkMemberStatus({
+      userId: data.id,
+      userEmail: data.kakao_account.email,
+      userNickname: data.kakao_account.userNickname,
+      userConnectedAt: data.connected_at,
+    });
       navigate(path);
+      console.log(path);
     } catch (error) {
       console.error("Kakao user info error:", error);
     }

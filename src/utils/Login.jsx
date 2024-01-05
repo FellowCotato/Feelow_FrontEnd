@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const SERVER_URL = "http://localhost:8080"; // 배포 시에 수정 예정
+const SERVER_URL = "http://43.200.189.64:8080/api/auth/sign-up"; 
 
 const checkMemberStatus = async ({ userId, userEmail, userNickname, userConnectedAt }) => {
   try {
-    const response = await axios.post(`${SERVER_URL}/api/auth/sign-up`, {
+    const response = await axios.post(SERVER_URL, {
       id: userId,
       connected_at: userConnectedAt,
       properties: {
@@ -29,11 +29,12 @@ const checkMemberStatus = async ({ userId, userEmail, userNickname, userConnecte
       const expiresIn = data.exprTime;
       const connectedAt = data.member.connected_at;
 
-      if (response.data.message === "User already registered") {
+      if (response.data.message === "Already existing member") {
         // 이미 가입된 회원인 경우
         localStorage.setItem("token", token);
         localStorage.setItem("connectedAt", connectedAt);
         localStorage.setItem("exprTime", expiresIn);
+        console.log("이미 가입된 회원입니다", response);
         return "/chatting";
       } else {
         // 새로 회원 가입 성공한 경우
