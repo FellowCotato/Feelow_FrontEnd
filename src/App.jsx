@@ -8,6 +8,7 @@ import AdditionRole from "./pages/addition";
 import PlusAddition from "./pages/addition/selectedrole";
 import Chatting from "./pages/Chatting/Chatting";
 import MyPage from "./pages/mypage";
+import LoginComplete from "./pages/loginComplete";
 
 function App() {
   return (
@@ -20,7 +21,8 @@ function App() {
           <Route path="/addition/detail" element={<PlusAddition />}></Route>
           <Route path="/chatting" element={<Chatting />}></Route>
           <Route path="/mypage" element={<MyPage />}></Route>
-      </Routes>
+          <Route path="/goto/addition" element={<LoginComplete />}></Route>
+        </Routes>
       </Router>
     </RecoilRoot>
   );
