@@ -69,47 +69,53 @@ const MyPage = () => {
             <Img src={circleImg} alt="character" />
             <DecoPeelowBtn>내 필로우 꾸미기</DecoPeelowBtn>
           </FlexBox>
-
-          <InfoDiv margin="55.92px 0px 0px 0px">
-            <InfoLabel>학교</InfoLabel>
-            <InfoInput>서울대학교사범대학부설고등학교</InfoInput>
-          </InfoDiv>
-          <InfoDiv margin="33px 0px 0px 0px">
-            <InfoLabelFixedWidth>학년/반/번호</InfoLabelFixedWidth>
-            <InfoInput justifyContent="space-around" width="28%" maxWidth="63px">
-              2<Placeholder>학년</Placeholder>
-            </InfoInput>
-            <InfoInput
-              justifyContent="space-around"
-              margin="0px 0px 0px 6px"
-              width="28%"
-              maxWidth="63px"
-            >
-              2<Placeholder>반</Placeholder>
-            </InfoInput>
-            <InfoInput
-              justifyContent="space-around"
-              margin="0px 0px 0px 6px"
-              width="28%"
-              maxWidth="63px"
-            >
-              2<Placeholder>번호</Placeholder>
-            </InfoInput>
-          </InfoDiv>
-          <InfoDiv margin="33px 0px 0px 0px">
-            <InfoLabel>이름</InfoLabel>
-            <InfoInput>강희수</InfoInput>
-          </InfoDiv>
-          <InfoDiv margin="33px 0px 0px 0px">
-            <InfoLabel>닉네임</InfoLabel>
-            <InfoInput>빛나는물</InfoInput>
-          </InfoDiv>
-          <InfoDiv margin="50px 0px 0px" padding="0px 0px 85px 0px">
-            <Button onClick={handleOpenLogOutModal} color="#db6b6b">
-              로그아웃
-            </Button>
-            <Button onClick={handleOpenSignOutModal}>회원탈퇴</Button>
-          </InfoDiv>
+          <FlexBox style={{ flexDirection: "column" }}>
+            <InfoDiv margin="55.92px 0px 0px 0px">
+              <InfoLabel>학교</InfoLabel>
+              <InfoInput>서울대학교사범대학부설고등학교</InfoInput>
+            </InfoDiv>
+            <InfoDiv margin="33px 0px 0px 0px" style={{ justifyContent: "space-around" }}>
+              {/* <InfoLabelFixedWidth>학년/반/번호</InfoLabelFixedWidth> */}
+              <InfoInput
+                margin="0px 0px 0px 6px"
+                justifyContent="space-around"
+                width="25%"
+                maxWidth="100px"
+              >
+                2<Placeholder>학년</Placeholder>
+              </InfoInput>
+              <InfoInput
+                justifyContent="space-around"
+                margin="0px 0px 0px 6px"
+                width="25%"
+                maxWidth="100px"
+              >
+                2<Placeholder>반</Placeholder>
+              </InfoInput>
+              <InfoInput
+                justifyContent="space-around"
+                margin="0px 0px 0px 6px"
+                width="25%"
+                maxWidth="100px"
+              >
+                2<Placeholder>번호</Placeholder>
+              </InfoInput>
+            </InfoDiv>
+            <InfoDiv margin="33px 0px 0px 0px">
+              <InfoLabel>이름</InfoLabel>
+              <InfoInput>강희수</InfoInput>
+            </InfoDiv>
+            <InfoDiv margin="33px 0px 0px 0px">
+              <InfoLabel>닉네임</InfoLabel>
+              <InfoInput>빛나는물</InfoInput>
+            </InfoDiv>
+            <InfoDiv margin="50px 0px 0px" padding="0px 0px 85px 0px">
+              <Button onClick={handleOpenLogOutModal} color="#db6b6b">
+                로그아웃
+              </Button>
+              <Button onClick={handleOpenSignOutModal}>회원탈퇴</Button>
+            </InfoDiv>
+          </FlexBox>
         </UserInfoBox>
         {isLogOutModal ? (
           <Modal>

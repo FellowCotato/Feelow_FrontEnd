@@ -60,6 +60,7 @@ export const InfoDiv = styled.div`
   justify-content: center;
   margin: ${(props) => props.margin || "0px"};
   padding: ${(props) => props.padding || "0px"};
+  max-width: 470px;
 `;
 
 export const InfoLabel = styled.label`
