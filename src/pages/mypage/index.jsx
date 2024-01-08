@@ -57,8 +57,8 @@ const MyPage = () => {
           <FlexBox>
             <Img
               Top="270px"
-              width="210px"
-              height="255px"
+              width="190px"
+              height="231px"
               zIndex="2"
               margin="0px 0px 0px -20px"
               src={characterImg}

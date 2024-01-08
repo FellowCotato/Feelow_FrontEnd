@@ -63,28 +63,28 @@ const KakaoLoginComponent = () => {
       });
   };
 
- // 유저 정보 받아오는 함수
-const fetchUserInfo = async (accessToken) => {
-  try {
-    const response = await axios.get("https://kapi.kakao.com/v2/user/me", {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-        "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
-      },
-    });
-    const data = response.data;
-    setUserId(data.id);
-    setUserNickname(data.userNickname);
-    setUserConnectedAt(data.connected_at);
-    setUserEmail(data.kakao_account.email);
+  // 유저 정보 받아오는 함수
+  const fetchUserInfo = async (accessToken) => {
+    try {
+      const response = await axios.get("https://kapi.kakao.com/v2/user/me", {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
+        },
+      });
+      const data = response.data;
+      setUserId(data.id);
+      setUserNickname(data.kakao_account.profile.nickname);
+      setUserConnectedAt(data.connected_at);
+      setUserEmail(data.kakao_account.email);
 
-    // 회원 여부 판별하는 함수
-    const path = await checkMemberStatus({
-      userId: data.id,
-      userEmail: data.kakao_account.email,
-      userNickname: data.kakao_account.userNickname,
-      userConnectedAt: data.connected_at,
-    });
+      // 회원 여부 판별하는 함수
+      const path = await checkMemberStatus({
+        userId: data.id,
+        userEmail: data.kakao_account.email,
+        userNickname: data.kakao_account.profile.nickname,
+        userConnectedAt: data.connected_at,
+      });
       navigate(path);
       console.log(path);
     } catch (error) {

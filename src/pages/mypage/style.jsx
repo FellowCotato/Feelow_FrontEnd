@@ -29,8 +29,8 @@ export const UserInfoBox = styled.div`
 
 export const Img = styled.img`
   position: absolute;
-  width: ${(props) => props.width || "279px"};
-  height: ${(props) => props.height || "279px"};
+  width: ${(props) => props.width || "253px"};
+  height: ${(props) => props.height || "253px"};
   z-index: ${(props) => props.zIndex || "1"};
   top: ${(props) => props.Top || "230px"};
   margin: ${(props) => props.margin || "0px"};

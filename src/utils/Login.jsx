@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const SERVER_URL = "http://43.200.189.64:8080/api/auth/sign-up"; 
+const SERVER_URL = "http://43.200.189.64:8080/api/auth/sign-up";
 
 const checkMemberStatus = async ({ userId, userEmail, userNickname, userConnectedAt }) => {
   try {
@@ -22,7 +22,7 @@ const checkMemberStatus = async ({ userId, userEmail, userNickname, userConnecte
         email: userEmail,
       },
     });
-
+    console.log(response);
     if (response.data.result === true) {
       const data = response.data;
       const token = data.token;
