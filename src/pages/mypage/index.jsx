@@ -5,6 +5,7 @@ import {
   Btn,
   BtnDiv,
   Button,
+  DecoPeelowBtn,
   FlexBox,
   Img,
   InfoDiv,
@@ -53,6 +54,7 @@ const MyPage = () => {
             <ButtonBox />
           </FlexBox>
         </AdditionTotalBox>
+
         <UserInfoBox>
           <FlexBox>
             <Img
@@ -65,8 +67,10 @@ const MyPage = () => {
               alt="character"
             />
             <Img src={circleImg} alt="character" />
+            <DecoPeelowBtn>내 필로우 꾸미기</DecoPeelowBtn>
           </FlexBox>
-          <InfoDiv margin="410px 0px 0px 0px">
+
+          <InfoDiv margin="55.92px 0px 0px 0px">
             <InfoLabel>학교</InfoLabel>
             <InfoInput>서울대학교사범대학부설고등학교</InfoInput>
           </InfoDiv>

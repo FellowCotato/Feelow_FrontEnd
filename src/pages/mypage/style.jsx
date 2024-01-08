@@ -36,6 +36,22 @@ export const Img = styled.img`
   margin: ${(props) => props.margin || "0px"};
 `;
 
+export const DecoPeelowBtn = styled.button`
+  margin: 353px 0px 0px 0px;
+  padding: 10px 64px;
+  gap: 10px;
+  border: none;
+  border-radius: 40px;
+  background: var(--Point-Color, #d7ab6e);
+  color: var(--White, #fff);
+  font-family: Pretendard;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.36px;
+  /* 정보입력 */
+  box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.18);
+`;
+
 export const InfoDiv = styled.div`
   width: 96%;
   height: 44px;
