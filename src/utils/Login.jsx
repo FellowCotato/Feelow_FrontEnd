@@ -40,9 +40,11 @@ const checkMemberStatus = async ({ userId, userEmail, userNickname, userConnecte
         localStorage.setItem("memberId", memberId);
         localStorage.setItem("nickname", nickname);
         localStorage.setItem("email", email);
-
         console.log("이미 가입된 회원입니다", response);
-        return "/chatting";
+
+        return "/goto/addition";
+
+        // return "/chatting";
       } else {
         // 새로 회원 가입 성공한 경우
         localStorage.setItem("token", token);

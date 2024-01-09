@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   TotalBox,
   FlexBox,
@@ -13,16 +13,28 @@ import {
   ButtonDiv,
 } from "./style";
 import { useNavigate } from "react-router-dom";
+import { GetSimpleInfoApi } from "../../utils/User";
 
 const LoginComplete = () => {
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+  const [email, setEmail] = useState("");
+  const [nickname, setNickname] = useState("");
 
-  const email = localStorage.getItem("email");
-  const nickname = localStorage.getItem("nickname");
-
-  const moveToAddition = () => {
-    navigate("/addition");
+  const getInfo = async () => {
+    try {
+      await GetSimpleInfoApi(token).then((res) => {
+        console.log(res);
+        setEmail(res.data.email);
+        setNickname(res.data.nickname);
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
+  useEffect(() => {
+    getInfo();
+  }, []);
 
   return (
     <>
@@ -31,7 +43,8 @@ const LoginComplete = () => {
           flexDirection: "column",
           width: "100vw",
           height: "100vh",
-          backgroundColor: " #FFFBF8",
+          backgroundColor: "#FFFBF8",
+          justifyContent: "flex-start",
         }}
       >
         <TotalBox>
@@ -45,7 +58,13 @@ const LoginComplete = () => {
               <TextDivParagraph2>
                 {email} 회원정보와 카카오계정 가입 및 연결 완료되었습니다.
               </TextDivParagraph2>
-              <ButtonDiv onClick={moveToAddition()}>추가정보 입력하기</ButtonDiv>
+              <ButtonDiv
+                onClick={() => {
+                  navigate("/addition");
+                }}
+              >
+                추가정보 입력하기
+              </ButtonDiv>{" "}
             </FlexBox>
           </DashedCompleteFoam>
         </TotalCompleteFoam>

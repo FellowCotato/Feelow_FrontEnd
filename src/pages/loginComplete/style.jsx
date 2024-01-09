@@ -8,9 +8,6 @@ export const FlexBox = styled.div`
 
 export const TotalBox = styled.div`
   width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
   max-width: 510px;
 `;
 export const LogoName = styled.div`
@@ -27,7 +24,7 @@ export const TotalCompleteFoam = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 6px 0px 0px 0px;
+  margin: 128px 0px 0px 0px;
   max-width: 1079px;
   min-width: 331px;
   padding: 12px;
@@ -43,6 +40,7 @@ export const TotalCompleteFoam = styled.div`
     height: 50%;
     width: 80%;
     padding: 6px;
+    margin: 128px 0px 0px 0px;
   }
 `;
 export const DashedCompleteFoam = styled.div`

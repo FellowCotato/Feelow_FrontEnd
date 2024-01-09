@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { AdditionTotalBox, FlexBox, LogoName } from "../style";
@@ -6,7 +7,11 @@ import Select from "react-select";
 import { OptionsGrade, OptionsClass, OptionsNumber } from "./components/optionsList.jsx";
 import { BlankButton } from "../../../components/button";
 import data from "./components/School.json";
+import { AdditionalInfoApi } from "../../../utils/User.jsx";
 const PlusAddition = () => {
+  const memberId = localStorage.getItem("memberId");
+  const token = localStorage.getItem("token");
+
   // 값이 결정되었는데 boolean 확인
   const [isSchool, setIsSchool] = useState(false);
   const [isGrade, setIsGrade] = useState(false);
@@ -24,21 +29,19 @@ const PlusAddition = () => {
       setIsNumber(true);
       setIsNickname(true);
       setUserInfo({
-        role: state.role,
         school: "",
         grade: "",
-        class: "",
-        number: "",
+        class_num: "",
+        student_number: null,
         name: "",
-        nickname: "",
+        nickname: null,
       });
     } else {
       setUserInfo({
-        role: state.role,
         school: "",
         grade: "",
-        class: "",
-        number: "",
+        class_num: "",
+        student_number: "",
         name: "",
         nickname: "",
       });
@@ -73,7 +76,7 @@ const PlusAddition = () => {
     setSelectedOptionClass(selectedOptionClass);
     setUserInfo({
       ...userInfo,
-      class: selectedOptionClass.label,
+      class_num: selectedOptionClass.label,
     });
     setIsClass(true);
   };
@@ -81,7 +84,7 @@ const PlusAddition = () => {
     setSelectedOptionNumber(selectedOptionNumber);
     setUserInfo({
       ...userInfo,
-      number: selectedOptionNumber.label,
+      student_number: selectedOptionNumber.label,
     });
     setIsNumber(true);
   };
@@ -278,12 +281,23 @@ const PlusAddition = () => {
       },
     }),
   };
+  const postAddition = async () => {
+    try {
+      // console.log(userInfo);
+      await AdditionalInfoApi(memberId, userInfo, token).then((res) => {
+        console.log(res);
+        alert("회원가입 되었습니다!\n다시 로그인을 진행해주세요");
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const signUpButton = () => {
     if (!isSchool || !isGrade || !isClass || !isNumber || !isName || !isNickname) {
       alert("모든 항목을 작성해주세요!");
     } else {
-      alert("회원가입 되었습니다!\n다시 로그인을 진행해주세요");
+      postAddition();
     }
   };
 
@@ -394,16 +408,29 @@ const PlusAddition = () => {
               *두 글자 이상 입력해 주세요.
             </CheckRegx>
           )}
-          <BlankButton
-            backgroundColor="#D0D0D0"
-            color="#fff"
-            width="279px"
-            borderColor="#D0D0D0"
-            style={{ margin: "37px 0px 89px" }}
-            onClick={signUpButton}
-          >
-            시작하기
-          </BlankButton>
+          {isSchool && isGrade && isClass && isNumber && isName && isNickname ? (
+            <BlankButton
+              backgroundColor="#D7AB6E"
+              color="#fff"
+              width="279px"
+              borderColor="#D7AB6E"
+              style={{ margin: "37px 0px 89px" }}
+              onClick={signUpButton}
+            >
+              시작하기
+            </BlankButton>
+          ) : (
+            <BlankButton
+              backgroundColor="#D0D0D0"
+              color="#fff"
+              width="279px"
+              borderColor="#D0D0D0"
+              style={{ margin: "37px 0px 89px" }}
+              onClick={signUpButton}
+            >
+              시작하기
+            </BlankButton>
+          )}
         </FlexBox>
       </AdditionTotalBox>
     </FlexBox>

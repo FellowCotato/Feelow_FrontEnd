@@ -6,14 +6,23 @@ import { useNavigate } from "react-router-dom";
 import { SelectRoleApi } from "../../utils/User";
 
 const AdditionRole = () => {
-  const [role, setRole] = useState("");
-  const navigate = useNavigate();
   const memberId = localStorage.getItem("memberId");
   const token = localStorage.getItem("token");
+  const [role, setRole] = useState("");
+  const navigate = useNavigate();
+
   const SelectRole = async () => {
     try {
       await SelectRoleApi(memberId, role, token).then((res) => {
         console.log(res);
+
+        if (res.data.success === false) {
+          alert("해당 ID의 회원을 찾을 수 없습니다.");
+        } else {
+          const member_type = res.data.data.member_type;
+          localStorage.setItem("member_type", member_type);
+          navigate("/addition/detail", { state: { role: role } });
+        }
       });
     } catch (err) {
       console.log(err);
@@ -22,14 +31,14 @@ const AdditionRole = () => {
 
   const selectStudent = () => {
     setRole("학생");
-    SelectRole();
     // navigate("/addition/detail", { state: { role: "학생" } });
+    SelectRole();
   };
   const selectTeacher = () => {
     setRole("선생님");
-    SelectRole();
-
     // navigate("/addition/detail", { state: { role: "선생님" } });
+
+    SelectRole();
   };
 
   return (
