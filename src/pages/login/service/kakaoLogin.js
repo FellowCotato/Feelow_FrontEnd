@@ -26,7 +26,7 @@ const KakaoLoginComponent = () => {
   const getKakaoCode = () => {
     let redirect_uri = REDIRECT_URI;
     window.location.href =
-      `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${CLIENT_ID}` +
+      `http://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${CLIENT_ID}` +
       `&redirect_uri=${encodeURIComponent(redirect_uri)}&scope=account_email,profile_nickname`;
   };
 
@@ -50,7 +50,7 @@ const KakaoLoginComponent = () => {
       .join("&");
 
     console.log(query);
-    fetch(`https://kauth.kakao.com/oauth/token?${query}`, {
+    fetch(`http://kauth.kakao.com/oauth/token?${query}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
@@ -66,7 +66,7 @@ const KakaoLoginComponent = () => {
   // 유저 정보 받아오는 함수
   const fetchUserInfo = async (accessToken) => {
     try {
-      const response = await axios.get("https://kapi.kakao.com/v2/user/me", {
+      const response = await axios.get("http://kapi.kakao.com/v2/user/me", {
         headers: {
           Authorization: `Bearer ${accessToken}`,
           "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",

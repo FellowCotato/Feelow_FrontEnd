@@ -30,20 +30,26 @@ export const TotalCompleteFoam = styled.div`
   margin: 6px 0px 0px 0px;
   max-width: 1079px;
   min-width: 331px;
+  padding: 12px;
   width: 88%;
   max-height: 550px;
   min-height: 452px;
-  height: 60%;
+  height: 57%;
   flex-shrink: 0;
   border-radius: 35px;
   background: #fff;
   box-shadow: 0px 0px 18px 0px #e1d7d0;
+  @media screen and (max-width: 425px) {
+    height: 50%;
+    width: 80%;
+    padding: 6px;
+  }
 `;
 export const DashedCompleteFoam = styled.div`
   max-width: 1055px;
-  width: 98%;
+  width: 100%;
   max-height: 526px;
-  height: 97%;
+  height: 100%;
   flex-shrink: 0;
   border-radius: 30px;
   border: 2.5px dashed #d7ab6e;
@@ -79,7 +85,7 @@ export const TextDivParagraph = styled.div`
   margin: 109px 0px 0px 0px;
 
   @media screen and (max-width: 425px) {
-    font-size: 18px;
+    font-size: 16px;
     letter-spacing: 0.18px;
     margin: 98px 0px 0px 0px;
   }
@@ -95,6 +101,7 @@ export const TextDivParagraph2 = styled.div`
   font-weight: 500;
   letter-spacing: 0.36px;
   margin: 20px 0px 0px 0px;
+  width: 80%;
 
   @media screen and (max-width: 425px) {
     font-size: 14px;
@@ -105,11 +112,13 @@ export const TextDivParagraph2 = styled.div`
 `;
 
 export const ButtonDiv = styled.button`
-  display: inline-flex;
+  display: flex;
   height: 50px;
-  padding: 13px 104px;
+  width: 80%;
+  max-width: 360px;
+  cursor: pointer;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   flex-shrink: 0;
   border-radius: 40px;
@@ -125,9 +134,8 @@ export const ButtonDiv = styled.button`
   margin: 80px 0px 0px 0px;
   border: none;
   @media screen and (max-width: 425px) {
-    padding: 12px 60px;
-    gap: 10px;
-    padding: 12px 60px;
+    width: 229px;
+    height: 41px;
     gap: 10px;
     font-size: 14px;
     font-weight: 600;
