@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 export const ChatContainer = styled.div`
   display: flex;
@@ -19,10 +19,9 @@ export const BotImg = styled.img`
 
 export const ChatContentContainer = styled.div`
   display: flex;
-  padding: 16px 32px;
-  flex-direction: column;
   justify-content: center;
-  align-items: stretch;
+  align-items: center;
+  padding: 16px 32px;
 
   max-width: 50%;
   height: fit-content;
@@ -43,14 +42,39 @@ export const ChatContent = styled.p`
   color: ${(props) => props.color};
   font-family: Pretendard;
   font-size: 16px;
-  font-style: normal;
   font-weight: 500;
-  line-height: normal;
   letter-spacing: 0.36px;
 
   @media only screen and (max-width: 768px) {
     font-size: 14px;
     letter-spacing: 0.14px;
     line-height: 17px;
+  }
+`;
+
+const scaling = (scale) => keyframes`
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(${scale});
+  }
+
+  100% {
+    transform: scale(1);
+  }
+`;
+
+export const ChatAnimation = styled.div`
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
+  margin: 0 2px;
+  border-radius: 50%;
+  background: #b4b4b4;
+  animation: ${(props) => scaling(props.scale)} 1s linear infinite;
+
+  @media only screen and (max-width: 768px) {
+    margin: -3px;
   }
 `;

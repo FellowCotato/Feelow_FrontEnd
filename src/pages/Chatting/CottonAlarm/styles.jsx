@@ -38,6 +38,7 @@ export const AlertBox = styled.div`
 
   @media only screen and (max-width: 768px) {
     padding: 24px 48px;
+    border-radius: 20px;
   }
 `;
 

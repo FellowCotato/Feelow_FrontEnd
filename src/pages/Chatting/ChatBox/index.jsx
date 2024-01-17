@@ -27,7 +27,7 @@ const ChatBox = ({ user, messages, setMessages, messageId, setMessageId }) => {
         {
           id: messageId + 1,
           sender: "bot",
-          content: "waiting",
+          content: "",
         },
       ]);
       setMessageId(messageId + 2);
