@@ -1,40 +1,29 @@
 import React from "react";
 import feelow_character from "../../../assets/feelow_character.png";
-import {
-  BotImg,
-  ChatContainer,
-  UserCircle,
-  UserName,
-  ChatContentContainer,
-  ChatContent,
-} from "./styles";
+import { BotImg, ChatContainer, ChatContentContainer, ChatContent } from "./styles";
+
+/*
+유저의 채팅 배경 색 변경
+유저 프로필은 수정 될지도
+*/
 
 const Chat = ({ message }) => {
-  const isBot = message.sender === "bot";
-
-  const profile = isBot ? (
-    <BotImg src={feelow_character} alt="bot-character" />
-  ) : (
-    <UserCircle>
-      <UserName>{message.sender}</UserName>
-    </UserCircle>
-  );
+  const sender = message.sender;
 
   return (
-    <ChatContainer isBot={isBot}>
-      {isBot ? (
+    <ChatContainer sender={sender}>
+      {sender === "bot" ? (
         <>
-          {profile}
-          <ChatContentContainer>
-            <ChatContent>{message.content}</ChatContent>
+          <BotImg src={feelow_character} alt="bot-character" />
+          <ChatContentContainer background="#F7F0EA">
+            <ChatContent color="#2c2c2c">{message.content}</ChatContent>
           </ChatContentContainer>
         </>
       ) : (
         <>
-          <ChatContentContainer>
-            <ChatContent>{message.content}</ChatContent>
+          <ChatContentContainer background="#809F80">
+            <ChatContent color="#fff">{message.content}</ChatContent>
           </ChatContentContainer>
-          {profile}
         </>
       )}
     </ChatContainer>

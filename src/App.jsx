@@ -6,7 +6,7 @@ import Home from "./pages/home";
 import Login from "./pages/login";
 import AdditionRole from "./pages/addition";
 import PlusAddition from "./pages/addition/selectedrole";
-import Chatting from "./pages/Chatting/Chatting";
+import Chatting from "./pages/Chatting";
 import MyPage from "./pages/mypage";
 import LoginComplete from "./pages/loginComplete";
 
