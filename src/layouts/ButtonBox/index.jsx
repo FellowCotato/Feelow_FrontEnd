@@ -1,92 +1,60 @@
-import React, { useCallback } from "react";
-import { ButtonWrapper, Cotton, Button, ButtonContainer } from "./styles";
+import React, { useEffect, useState } from "react";
+import { ButtonWrapper, Cotton, Button, Buttons, ButtonContainer } from "./styles";
 import cotton from "../../assets/cotton.png";
 import { ReactComponent as StoreImg } from "../../assets/store_img.svg";
 import { ReactComponent as ProfileImg } from "../../assets/profile_img.svg";
 import { ReactComponent as CalendarImg } from "../../assets/calendar_img.svg";
 
-/*
-button state 관리가 이게 최선인지 생각 필요
-*/
+const ButtonBox = ({ cottonCount, page, setIsCottonModalOpen }) => {
+  const [isStoreActive, setIsStoreActive] = useState(page === "store");
+  const [isProfileActive, setIsProfileActive] = useState(page === "profile");
+  const [isCalendarActive, setIsCalendarActive] = useState(page === "calendar");
 
-const ButtonBox = ({
-  cottonCount,
-  isStoreActive,
-  setIsStoreActive,
-  isProfileActive,
-  setIsProfileActive,
-  isCalendarActive,
-  setIsCalendarActive,
-  setIsCottonModalOpen,
-}) => {
-  const onClickCotton = useCallback(() => {
-    console.log("cotton click");
-    setIsCottonModalOpen(true);
-  }, []);
-
-  const onClickStore = useCallback(() => {
-    console.log("store click");
-    setIsStoreActive(true);
-    setIsProfileActive(false);
-    setIsCalendarActive(false);
-  }, []);
-
-  const onClickProfile = useCallback(() => {
-    console.log("profile click");
-    setIsStoreActive(false);
-    setIsProfileActive(true);
-    setIsCalendarActive(false);
-  }, []);
-
-  const onClickCalendar = useCallback(() => {
-    console.log("calendar click");
-    setIsStoreActive(false);
-    setIsProfileActive(false);
-    setIsCalendarActive(true);
-  }, []);
-
-  const isChattingPage = useCallback(
-    () => !isStoreActive && !isProfileActive && !isCalendarActive,
-    [isStoreActive, isProfileActive, isCalendarActive],
-  );
+  useEffect(() => {
+    setIsStoreActive(page === "store");
+    setIsProfileActive(page === "profile");
+    setIsCalendarActive(page === "calendar");
+  }, [page]);
 
   return (
     <ButtonWrapper>
       <ButtonContainer>
-        <Cotton onClick={onClickCotton}>
+        <Cotton onClick={() => setIsCottonModalOpen(true)}>
           <img src={cotton} alt="cotton" />
           <p className="cotton-counter">{`${cottonCount}개`}</p>
         </Cotton>
-        <div className="button-container">
+        <Buttons>
           <Button
-            onClick={onClickStore}
-            color={isStoreActive ? "#D7AB6E" : isChattingPage() ? "#B19B8F" : "#B0B0B0"}
+            to="/store"
+            color={isStoreActive ? "#D7AB6E" : page === "chatting" ? "#B19B8F" : "#B0B0B0"}
           >
-            <StoreImg fill={isStoreActive ? "#D7AB6E" : isChattingPage() ? "#B19B8F" : "#B0B0B0"} />
+            <StoreImg
+              fill={isStoreActive ? "#D7AB6E" : page === "chatting" ? "#B19B8F" : "#B0B0B0"}
+            />
             <p>상점</p>
           </Button>
           <Button
-            onClick={onClickProfile}
-            color={isProfileActive ? "#D7AB6E" : isChattingPage() ? "#B19B8F" : "#B0B0B0"}
+            to="/profile"
+            color={isProfileActive ? "#D7AB6E" : page === "chatting" ? "#B19B8F" : "#B0B0B0"}
           >
             <ProfileImg
-              fill={isProfileActive ? "#D7AB6E" : isChattingPage() ? "#B19B8F" : "#B0B0B0"}
+              fill={isProfileActive ? "#D7AB6E" : page === "chatting" ? "#B19B8F" : "#B0B0B0"}
             />
             <p>프로필</p>
           </Button>
           <Button
-            onClick={onClickCalendar}
-            color={isCalendarActive ? "#D7AB6E" : isChattingPage() ? "#B19B8F" : "#B0B0B0"}
+            to="/calendar"
+            color={isCalendarActive ? "#D7AB6E" : page === "chatting" ? "#B19B8F" : "#B0B0B0"}
           >
             <CalendarImg
-              fill={isCalendarActive ? "#D7AB6E" : isChattingPage() ? "#B19B8F" : "#B0B0B0"}
+              fill={isCalendarActive ? "#D7AB6E" : page === "chatting" ? "#B19B8F" : "#B0B0B0"}
             />
             <p>캘린더</p>
           </Button>
-        </div>
+        </Buttons>
       </ButtonContainer>
     </ButtonWrapper>
   );
 };
 
-export default ButtonBox;
+export default React.memo(ButtonBox);
