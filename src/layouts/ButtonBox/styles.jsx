@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const ButtonWrapper = styled.div`
@@ -14,7 +15,7 @@ export const ButtonWrapper = styled.div`
 
 export const ButtonContainer = styled.div`
   height: 100%;
-  width: 100%;
+  width: 60%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -60,11 +61,15 @@ export const Cotton = styled.div`
   }
 `;
 
-export const Button = styled.button`
+export const Buttons = styled.div`
+  display: flex;
+`;
+
+export const Button = styled(Link)`
   background-color: transparent;
   border: none;
-  cursor: pointer;
   margin-left: 24px;
+  text-decoration: none;
 
   @media only screen and (max-width: 768px) {
     margin-left: 16px;
