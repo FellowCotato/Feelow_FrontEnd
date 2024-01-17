@@ -14,7 +14,7 @@ export const ButtonWrapper = styled.div`
 
 export const ButtonContainer = styled.div`
   height: 100%;
-  width: 60%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
