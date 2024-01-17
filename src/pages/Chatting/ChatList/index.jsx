@@ -8,6 +8,7 @@ const ChatList = forwardRef(({ messages }, ref) => {
   useEffect(() => {
     ref.current?.scrollToBottom();
   });
+  console.log(messages);
 
   return (
     <ChatZone>
