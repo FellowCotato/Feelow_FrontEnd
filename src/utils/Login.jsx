@@ -32,6 +32,7 @@ const checkMemberStatus = async ({ userId, userEmail, userNickname, userConnecte
       const memberId = data.member.memberId;
       const nickname = data.member.nickname;
       const email = data.member.email;
+
       if (response.data.message === "Already existing member") {
         // 이미 가입된 회원인 경우
         localStorage.setItem("token", token);
@@ -40,11 +41,12 @@ const checkMemberStatus = async ({ userId, userEmail, userNickname, userConnecte
         localStorage.setItem("memberId", memberId);
         localStorage.setItem("nickname", nickname);
         localStorage.setItem("email", email);
+        localStorage.setItem("member_type", data.member.member_type);
+        localStorage.setItem("studentId", data.member.studentId);
+        localStorage.setItem("teacherId", data.member.teacherId);
         console.log("이미 가입된 회원입니다", response);
 
-        return "/goto/addition";
-
-        // return "/chatting";
+        return "/chatting";
       } else {
         // 새로 회원 가입 성공한 경우
         localStorage.setItem("token", token);

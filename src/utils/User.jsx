@@ -4,7 +4,7 @@ import axios from "axios";
 const SERVER_URL = "http://43.200.217.72:8080";
 
 export const GetSimpleInfoApi = (token) => {
-  return axios.get(`${SERVER_URL}/api/auth`, {
+  return axios.get(`${SERVER_URL}/api/auth/`, {
     headers: { Authorization: `Bearer ${token}` },
   });
 };
