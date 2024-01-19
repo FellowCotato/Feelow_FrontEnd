@@ -29,11 +29,27 @@ export const UserInfoBox = styled.div`
 
 export const Img = styled.img`
   position: absolute;
-  width: ${(props) => props.width || "279px"};
-  height: ${(props) => props.height || "279px"};
+  width: ${(props) => props.width || "253px"};
+  height: ${(props) => props.height || "253px"};
   z-index: ${(props) => props.zIndex || "1"};
   top: ${(props) => props.Top || "230px"};
   margin: ${(props) => props.margin || "0px"};
+`;
+
+export const DecoPeelowBtn = styled.button`
+  margin: 353px 0px 0px 0px;
+  padding: 10px 64px;
+  gap: 10px;
+  border: none;
+  border-radius: 40px;
+  background: var(--Point-Color, #d7ab6e);
+  color: var(--White, #fff);
+  font-family: Pretendard;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.36px;
+  /* 정보입력 */
+  box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.18);
 `;
 
 export const InfoDiv = styled.div`
@@ -44,6 +60,7 @@ export const InfoDiv = styled.div`
   justify-content: center;
   margin: ${(props) => props.margin || "0px"};
   padding: ${(props) => props.padding || "0px"};
+  max-width: 470px;
 `;
 
 export const InfoLabel = styled.label`

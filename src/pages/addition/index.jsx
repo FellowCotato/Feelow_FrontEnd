@@ -3,17 +3,16 @@ import React, { useState } from "react";
 import { AdditionTotalBox, FlexBox, LogoName, AdditionLabel } from "./style";
 import { BlankButton } from "../../components/button";
 import { useNavigate } from "react-router-dom";
+import { SelectRoleApi } from "../../utils/User";
 
 const AdditionRole = () => {
-  const [role, setRole] = useState("");
   const navigate = useNavigate();
 
   const selectStudent = () => {
-    setRole("학생");
     navigate("/addition/detail", { state: { role: "학생" } });
   };
+
   const selectTeacher = () => {
-    setRole("선생님");
     navigate("/addition/detail", { state: { role: "선생님" } });
   };
 
