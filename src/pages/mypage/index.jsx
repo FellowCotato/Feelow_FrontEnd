@@ -28,6 +28,8 @@ import circleImg from "../../assets/circle_img.svg";
 import xButtonImg from "../../assets/xButton_img.svg";
 import ButtonBox from "../../layouts/ButtonBox";
 import { GetUserInfoApi } from "../../utils/User";
+import studentCharacter from "../../assets/studentCharacter.svg";
+import teacherCharacter from "../../assets/teacherCharacter.svg";
 
 const MyPage = () => {
   const token = localStorage.getItem("token");
