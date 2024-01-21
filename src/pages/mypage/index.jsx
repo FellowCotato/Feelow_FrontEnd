@@ -57,20 +57,9 @@ const MyPage = () => {
 
   const getUserInfo = async () => {
     try {
-      // await GetUserInfoApi(memberId, token).then((res) => {
-      //   console.log(res);
-      //   setUserInfo(res.data.data);
-      // });
-      setUserInfo({
-        studentId: 9,
-        nickname: "철수닉네임",
-        studentNumber: 3,
-        studentName: "김철수",
-        teacherId: null,
-        teacherName: "김지현",
-        school: "떡잎중학교",
-        grade: 1,
-        classNum: 2,
+      await GetUserInfoApi(memberId, token).then((res) => {
+        console.log(res);
+        setUserInfo(res.data.data);
       });
     } catch (err) {
       console.log(err);
@@ -116,7 +105,7 @@ const MyPage = () => {
                   <InfoLabel>학교</InfoLabel>
                   <InfoInput>{userInfo.school}</InfoInput>
                 </InfoDiv>
-                <InfoDiv margin="33px 0px 0px 0px">
+                <InfoDiv margin="33px 0px 0px 3px">
                   <InfoLabelFixedWidth>학년/반/번호</InfoLabelFixedWidth>
                   <InfoInput justifyContent="space-around" width="25%" maxWidth="56px">
                     {userInfo.grade}
