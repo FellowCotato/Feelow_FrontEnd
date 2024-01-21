@@ -22,6 +22,6 @@ export const LogoName = styled.div`
 `;
 export const UserInfoBox = styled.div`
   width: 100%;
-  height: 100%;
+  height: 726px;
   background-color: #f7f0ea;
 `;
