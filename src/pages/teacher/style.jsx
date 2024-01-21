@@ -24,4 +24,8 @@ export const UserInfoBox = styled.div`
   width: 100%;
   height: 726px;
   background-color: #f7f0ea;
+
+  @media screen and (max-width: 438px) {
+    height: 786px;
+  }
 `;

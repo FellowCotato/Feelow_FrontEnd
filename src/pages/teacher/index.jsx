@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { AdditionTotalBox, FlexBox, LogoName, UserInfoBox } from "./style";
 import ButtonBox from "../../layouts/ButtonBox";
 import { useStateManager } from "react-select";
+import { GetStudentListApi } from "../../utils/Teacher";
+import character_img from "../../assets/character_img.svg";
 
 const TeacherPage = () => {
   const token = localStorage.getItem("token");
@@ -12,6 +14,159 @@ const TeacherPage = () => {
   const [grade, setGrade] = useState("");
   const [classNum, setClassNum] = useState("");
   const [studentList, setStudentList] = useState({});
+
+  const getStudentList = async () => {
+    try {
+      // await GetStudentListApi(memberId, token).then((res) => {
+      //   console.log(res);
+      // });
+      setGrade("2");
+      setClassNum("1");
+      setStudentList([
+        {
+          studentImg: character_img,
+          studentId: 1,
+          studentName: "김가은",
+        },
+        {
+          studentImg: character_img,
+          studentId: 2,
+          studentName: "김가연",
+        },
+        {
+          studentImg: character_img,
+          studentId: 3,
+          studentName: "박가은",
+        },
+        {
+          studentImg: character_img,
+          studentId: 3,
+          studentName: "박가은",
+        },
+        {
+          studentImg: character_img,
+          studentId: 3,
+          studentName: "박가은",
+        },
+        {
+          studentImg: character_img,
+          studentId: 3,
+          studentName: "박가은",
+        },
+        {
+          studentImg: character_img,
+          studentId: 3,
+          studentName: "박가은",
+        },
+        {
+          studentImg: character_img,
+          studentId: 3,
+          studentName: "박가은",
+        },
+        {
+          studentImg: character_img,
+          studentId: 3,
+          studentName: "박가은",
+        },
+        {
+          studentImg: character_img,
+          studentId: 3,
+          studentName: "박가은",
+        },
+        {
+          studentImg: character_img,
+          studentId: 3,
+          studentName: "박가은",
+        },
+        {
+          studentImg: character_img,
+          studentId: 3,
+          studentName: "박가은",
+        },
+        {
+          studentImg: character_img,
+          studentId: 3,
+          studentName: "박가은",
+        },
+        {
+          studentImg: character_img,
+          studentId: 3,
+          studentName: "박가은",
+        },
+        {
+          studentImg: character_img,
+          studentId: 3,
+          studentName: "박가은",
+        },
+        {
+          studentImg: character_img,
+          studentId: 3,
+          studentName: "박가은",
+        },
+        {
+          studentImg: character_img,
+          studentId: 3,
+          studentName: "박가은",
+        },
+        {
+          studentImg: character_img,
+          studentId: 3,
+          studentName: "박가은",
+        },
+        {
+          studentImg: character_img,
+          studentId: 3,
+          studentName: "박가은",
+        },
+        {
+          studentImg: character_img,
+          studentId: 3,
+          studentName: "박가은",
+        },
+        {
+          studentImg: character_img,
+          studentId: 3,
+          studentName: "박가은",
+        },
+        {
+          studentImg: character_img,
+          studentId: 3,
+          studentName: "박가은",
+        },
+        {
+          studentImg: character_img,
+          studentId: 3,
+          studentName: "박가은",
+        },
+        {
+          studentImg: character_img,
+          studentId: 3,
+          studentName: "박가은",
+        },
+        {
+          studentImg: character_img,
+          studentId: 3,
+          studentName: "박가은",
+        },
+        {
+          studentImg: character_img,
+          studentId: 3,
+          studentName: "박가은",
+        },
+        {
+          studentImg: character_img,
+          studentId: 3,
+          studentName: "박가은",
+        },
+      ]);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getStudentList();
+  }, []);
 
   return (
     <>
