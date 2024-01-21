@@ -28,3 +28,9 @@ export const AdditionalInfoApi = (memberId, userInfo, token) => {
     headers: { Authorization: `Bearer ${token}` },
   });
 };
+
+export const GetUserInfoApi = (memberId, token) => {
+  return axios.get(`${SERVER_URL}/api/${memberId}/mypage`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+};

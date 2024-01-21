@@ -34,10 +34,19 @@ export const Img = styled.img`
   z-index: ${(props) => props.zIndex || "1"};
   top: ${(props) => props.Top || "230px"};
   margin: ${(props) => props.margin || "0px"};
+  @media screen and (max-width: 480px) {
+    top: 210px;
+  }
+`;
+export const CharacterImage = styled(Img)`
+  top: 270px;
+  @media screen and (max-width: 480px) {
+    top: 250px;
+  }
 `;
 
 export const DecoPeelowBtn = styled.button`
-  margin: 353px 0px 0px 0px;
+  margin: 363px 0px 0px 0px;
   padding: 10px 64px;
   gap: 10px;
   border: none;
@@ -50,6 +59,26 @@ export const DecoPeelowBtn = styled.button`
   letter-spacing: 0.36px;
   /* 정보입력 */
   box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.18);
+  @media screen and (max-width: 768px) {
+    margin: 393px 0px 0px 0px;
+  }
+`;
+
+export const MyPageTeacherNameText = styled.div`
+  margin: 363px 0px 0px 0px;
+  color: var(--Main-Font, #2c2c2c);
+  text-align: center;
+
+  /* Title */
+  font-family: Pretendard;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.28px;
+  @media screen and (max-width: 768px) {
+    margin: 393px 0px 0px 0px;
+  }
 `;
 
 export const InfoDiv = styled.div`
@@ -99,8 +128,8 @@ export const InfoInput = styled.div`
   padding: 0px 0px 0px 24px;
   border-radius: 20px;
   margin: ${(props) => props.margin || "0px"};
-  border: 2px solid #809f80;
-  background: #fff;
+  border: ${(props) => props.border || "2px solid #809f80"};
+  background: ${(props) => props.background || "#fff"};
   color: var(--Main-Font, #2c2c2c);
   font-family: "Pretendard";
 `;
