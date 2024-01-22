@@ -20,12 +20,28 @@ export const LogoName = styled.div`
   font-weight: 400;
   letter-spacing: 0.7px;
 `;
-export const UserInfoBox = styled.div`
+export const UserInfoComponent = styled.div`
   width: 100%;
   height: 726px;
   background-color: #f7f0ea;
-
-  @media screen and (max-width: 438px) {
+  @media screen and (max-width: 768px) {
     height: 786px;
+  }
+`;
+
+export const ClassTextDiv = styled.div`
+  color: var(--Main-Font, #2c2c2c);
+  text-align: center;
+
+  /* Title */
+  font-family: Pretendard;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.28px;
+  margin: 54px 0px 0px 0px;
+  @media screen and (max-width: 768px) {
+    margin: 40px 0px 0px 0px;
   }
 `;

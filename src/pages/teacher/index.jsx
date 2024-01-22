@@ -1,10 +1,11 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
-import { AdditionTotalBox, FlexBox, LogoName, UserInfoBox } from "./style";
+import { AdditionTotalBox, ClassTextDiv, FlexBox, LogoName, UserInfoComponent } from "./style";
 import ButtonBox from "../../layouts/ButtonBox";
 import { useStateManager } from "react-select";
 import { GetStudentListApi } from "../../utils/Teacher";
 import character_img from "../../assets/character_img.svg";
+import { StudentDiv } from "./component/StudentDiv";
 
 const TeacherPage = () => {
   const token = localStorage.getItem("token");
@@ -177,8 +178,10 @@ const TeacherPage = () => {
             <ButtonBox />
           </FlexBox>
         </AdditionTotalBox>
-
-        <UserInfoBox></UserInfoBox>
+        <UserInfoComponent>
+          <ClassTextDiv>2학년 2반</ClassTextDiv>
+          <StudentDiv />
+        </UserInfoComponent>
       </FlexBox>
     </>
   );
