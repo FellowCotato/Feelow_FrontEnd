@@ -4,6 +4,7 @@ export const FlexBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 `;
 
 export const AdditionTotalBox = styled.div`
@@ -44,4 +45,12 @@ export const ClassTextDiv = styled.div`
   @media screen and (max-width: 768px) {
     margin: 40px 0px 0px 0px;
   }
+`;
+
+export const StudentListComponent = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  max-width: 1080px;
+  width: 90%;
+  height: 500px;
 `;

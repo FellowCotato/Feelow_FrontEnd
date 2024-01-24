@@ -1,10 +1,11 @@
 /* eslint-disable no-unused-vars */
 import styled from "styled-components";
 
-export const StudentDiv = () => {
+export const StudentDiv = ({ item }) => {
+  console.log(item);
   return (
     <Box>
-      <div>하이</div>
+      <div>{item.studentId}</div>
     </Box>
   );
 };
