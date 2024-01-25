@@ -9,6 +9,7 @@ import PlusAddition from "./pages/addition/selectedrole";
 import Chatting from "./pages/Chatting";
 import MyPage from "./pages/mypage";
 import LoginComplete from "./pages/loginComplete";
+import Calendar from "./pages/Calendar";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/chatting" element={<Chatting />}></Route>
           <Route path="/mypage" element={<MyPage />}></Route>
           <Route path="/goto/addition" element={<LoginComplete />}></Route>
+          <Route path="/calendar" element={<Calendar />}></Route>
         </Routes>
       </Router>
     </RecoilRoot>
