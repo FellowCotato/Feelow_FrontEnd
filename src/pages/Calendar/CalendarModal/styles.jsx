@@ -1,6 +1,5 @@
 import styled, { css } from "styled-components";
 import { ReactComponent as CloseIcon } from "../../../assets/close_icon.svg";
-import { ReactComponent as FeelowCharacter } from "../../../assets/feelow_character.svg";
 
 export const ModalOverlay = styled.div`
   position: absolute;
@@ -82,11 +81,16 @@ export const ContentBox = styled.div`
   width: 90%;
 `;
 
-export const Feelow = styled(FeelowCharacter)`
+export const CharacterWrapper = styled.div`
   grid-area: "character";
-  width: 132px;
-  height: 180px;
-  margin-left: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  > svg {
+    width: 132px;
+    height: 180px;
+  }
 `;
 
 export const TextWrapper = styled.div`

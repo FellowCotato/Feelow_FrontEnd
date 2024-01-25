@@ -1,10 +1,11 @@
 import React, { useEffect, useRef } from "react";
 import {
+  CharacterWrapper,
   ChatSummary,
   CloseButton,
   ContentBox,
   ContentWrapper,
-  Feelow,
+  // Feelow,
   Horizon,
   ModalBackground,
   ModalBox,
@@ -13,6 +14,7 @@ import {
   TextWrapper,
   TodayWord,
 } from "./styles";
+import { ReactComponent as FeelowCharacter } from "../../../assets/feelow_character.svg";
 
 const content = {
   summary: "시험을 망침. 필로우가 위로해줌. 다음에 더 잘해야겠다고 다짐함.",
@@ -48,7 +50,9 @@ const CalendarModal = ({ modalOpen, setModalOpen, date }) => {
           </ModalHeader>
           <ContentWrapper>
             <ContentBox>
-              <Feelow />
+              <CharacterWrapper>
+                <FeelowCharacter />
+              </CharacterWrapper>
               <TextWrapper>
                 <ChatSummary>
                   <h5>대화 내용 요약</h5>
