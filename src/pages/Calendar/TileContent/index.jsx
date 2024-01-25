@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { DateWrapper, StyledFeelowCharacter, TileWrapper } from "./styles";
 
-const TileContent = ({ activeStartDate, date }) => {
+const TileContent = ({ activeStartDate, date, onClickTile }) => {
+  const onClickTileWrapper = useCallback(() => {
+    onClickTile(date);
+  }, []);
+
   const currentDate = new Date();
   currentDate.setHours(0, 0, 0, 0);
 
@@ -11,7 +15,7 @@ const TileContent = ({ activeStartDate, date }) => {
   }
 
   return (
-    <TileWrapper datenow={dateNow.toString()}>
+    <TileWrapper datenow={dateNow.toString()} onClick={onClickTileWrapper}>
       <DateWrapper
         day={date.getDay()}
         neighboringmonth={(date.getMonth() === activeStartDate.getMonth()).toString()}

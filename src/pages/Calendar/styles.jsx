@@ -18,10 +18,15 @@ export const CalendarInnerWrapper = styled.div`
   background: #f7f0ea;
 `;
 
-export const StyleCalendar = styled(Calendar)`
+export const CalendarBox = styled.div`
+  position: relative;
   width: 60%;
+  margin: 36px 0;
+`;
+
+export const StyledCalendar = styled(Calendar)`
+  width: 100%;
   height: auto;
-  margin: 36px;
   border: 0.5px solid #e8e8e8;
   background: #fffbf8;
 
