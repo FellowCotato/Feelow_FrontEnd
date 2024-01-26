@@ -16,12 +16,20 @@ export const CalendarInnerWrapper = styled.div`
   width: 100%;
   min-height: calc(100vh - 190px);
   background: #f7f0ea;
+
+  @media only screen and (max-width: 768px) {
+    min-height: calc(100vh - 115px);
+  }
 `;
 
 export const CalendarBox = styled.div`
   position: relative;
   width: 60%;
   margin: 36px 0;
+
+  @media only screen and (max-width: 768px) {
+    width: 90%;
+  }
 `;
 
 export const StyledCalendar = styled(Calendar)`
@@ -30,12 +38,22 @@ export const StyledCalendar = styled(Calendar)`
   border: 0.5px solid #e8e8e8;
   background: #fffbf8;
 
+  @media only screen and (max-width: 768px) {
+    border: 1px solid #e8e8e8;
+    border-radius: 4px;
+  }
+
   .react-calendar__navigation {
     display: flex;
     justify-content: flex-end;
     height: 60px;
     margin: 0;
     border: 0.5px solid #e8e8e8;
+
+    @media only screen and (max-width: 768px) {
+      border: none;
+      border-bottom: 1px solid #e8e8e8;
+    }
 
     .react-calendar__navigation__label {
       max-width: 140px;
@@ -46,12 +64,21 @@ export const StyledCalendar = styled(Calendar)`
       font-style: normal;
       font-weight: 600;
       line-height: 20px;
+
+      @media only screen and (max-width: 768px) {
+        max-width: 80px;
+        font-size: 18px;
+      }
     }
   }
 
   .react-calendar__month-view {
     abbr {
       display: none;
+    }
+
+    @media only screen and (max-width: 768px) {
+      padding: 24px 16px;
     }
 
     .react-calendar__month-view__weekdays__weekday {
@@ -66,39 +93,77 @@ export const StyledCalendar = styled(Calendar)`
       font-style: normal;
       font-weight: 600;
       line-height: 20px;
+
+      @media only screen and (max-width: 768px) {
+        border: none;
+        justify-content: center;
+
+        font-size: 16px;
+        margin: 0 0 12px;
+      }
     }
 
     .react-calendar__month-view__weekdays__weekday:nth-child(1):before {
       color: #ff6b6b;
       content: "SUN";
+
+      @media only screen and (max-width: 768px) {
+        content: "S";
+      }
     }
 
     .react-calendar__month-view__weekdays__weekday:nth-child(2):before {
       content: "MON";
+
+      @media only screen and (max-width: 768px) {
+        content: "M";
+      }
     }
 
     .react-calendar__month-view__weekdays__weekday:nth-child(3):before {
       content: "TUE";
+
+      @media only screen and (max-width: 768px) {
+        content: "T";
+      }
     }
 
     .react-calendar__month-view__weekdays__weekday:nth-child(4):before {
       content: "WED";
+
+      @media only screen and (max-width: 768px) {
+        content: "W";
+      }
     }
 
     .react-calendar__month-view__weekdays__weekday:nth-child(5):before {
       content: "THU";
+
+      @media only screen and (max-width: 768px) {
+        content: "T";
+      }
     }
 
     .react-calendar__month-view__weekdays__weekday:nth-child(6):before {
       content: "FRI";
+
+      @media only screen and (max-width: 768px) {
+        content: "F";
+      }
     }
 
     .react-calendar__month-view__weekdays__weekday:nth-child(7):before {
       content: "SAT";
+
+      @media only screen and (max-width: 768px) {
+        content: "S";
+      }
     }
 
     .react-calendar__month-view__weekdays__weekday--weekend {
-      background: #fcf8f5;
+      @media only screen and (min-width: 768px) {
+        background: #fcf8f5;
+      }
     }
   }
 
@@ -123,12 +188,18 @@ export const StyledCalendar = styled(Calendar)`
 
     .react-calendar__month-view__days__day--weekend {
       color: #ff6b6b;
-      background: #fcf8f5;
+
+      @media only screen and (min-width: 768px) {
+        background: #fcf8f5;
+      }
     }
 
     .react-calendar__month-view__days__day--neighboringMonth {
       color: #b0b0b0;
-      background: #faf5f0;
+
+      @media only screen and (min-width: 768px) {
+        background: #faf5f0;
+      }
     }
 
     .react-calendar__month-view__days__day--neighboringMonth.react-calendar__month-view__days__day--weekend {

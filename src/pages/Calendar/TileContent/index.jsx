@@ -1,7 +1,20 @@
-import React, { useCallback } from "react";
-import { DateWrapper, StyledFeelowCharacter, TileWrapper } from "./styles";
+import React, { useCallback, useState, useEffect } from "react";
+import { AcitveDot, DateWrapper, StyledFeelowCharacter, TileWrapper } from "./styles";
 
 const TileContent = ({ activeStartDate, date, onClickTile }) => {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   const onClickTileWrapper = useCallback(() => {
     onClickTile(date);
   }, []);
@@ -18,14 +31,13 @@ const TileContent = ({ activeStartDate, date, onClickTile }) => {
     <TileWrapper datenow={dateNow.toString()} onClick={onClickTileWrapper}>
       <DateWrapper
         day={date.getDay()}
-        neighboringmonth={(date.getMonth() === activeStartDate.getMonth()).toString()}
+        neighboringmonth={(date.getMonth() !== activeStartDate.getMonth()).toString()}
         datenow={dateNow.toString()}
       >
         <p>{date.getDate()}</p>
       </DateWrapper>
-      {(date.getDay() === 1 || date.getDate() === currentDate.getDate()) && (
-        <StyledFeelowCharacter width={64} height={68} />
-      )}
+      {(date.getDay() === 1 || date.getDate() === currentDate.getDate()) &&
+        (windowWidth <= 768 ? <AcitveDot /> : <StyledFeelowCharacter width={64} height={68} />)}
     </TileWrapper>
   );
 };
