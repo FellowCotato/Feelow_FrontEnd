@@ -17,6 +17,7 @@ import Pagination from "react-js-pagination";
 import "./paging.css";
 import { StudentComponent } from "./component/StudentsComponent";
 import useWindowSize from "../../hook/WindowSize";
+import TeacherMenu from "../../layouts/TeacherMenuBar";
 
 const TeacherPage = () => {
   const token = localStorage.getItem("token");
@@ -218,6 +219,24 @@ const TeacherPage = () => {
           studentImg: character_img,
           studentName: "박가은",
         },
+        {
+          studentId: 28,
+          studentNum: 1,
+          studentImg: character_img,
+          studentName: "박가은",
+        },
+        {
+          studentId: 29,
+          studentNum: 1,
+          studentImg: character_img,
+          studentName: "박가은",
+        },
+        {
+          studentId: 30,
+          studentNum: 1,
+          studentImg: character_img,
+          studentName: "박가은",
+        },
       ]);
     } catch (err) {
       console.log(err);
@@ -241,7 +260,8 @@ const TeacherPage = () => {
         <AdditionTotalBox>
           <FlexBox style={{ flexDirection: "column" }}>
             <LogoName>Feelow</LogoName>
-            <ButtonBox />
+            {/* <ButtonBox /> */}
+            <TeacherMenu page="studentList" grade={grade} classNum={classNum} />
           </FlexBox>
         </AdditionTotalBox>
         <UserInfoComponent>
