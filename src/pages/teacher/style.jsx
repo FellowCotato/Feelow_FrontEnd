@@ -46,11 +46,3 @@ export const ClassTextDiv = styled.div`
     margin: 40px 0px 0px 0px;
   }
 `;
-
-export const StudentListComponent = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  max-width: 1080px;
-  width: 90%;
-  height: 500px;
-`;
