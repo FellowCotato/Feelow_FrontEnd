@@ -68,7 +68,6 @@ export const MyPageTeacherNameText = styled.div`
   margin: 363px 0px 0px 0px;
   color: var(--Main-Font, #2c2c2c);
   text-align: center;
-
   /* Title */
   font-family: Pretendard;
   font-size: 28px;
