@@ -40,6 +40,7 @@ const TeacherPage = () => {
     setPage(page);
     takeOffList(page);
   };
+  const [totalPage, setTotalPage] = useState();
 
   const takeOffList = (page) => {
     const startIndex = perPage * (page - 1);
@@ -238,6 +239,7 @@ const TeacherPage = () => {
           studentName: "박가은",
         },
       ]);
+      setTotalPage(Math.ceil(studentList.length / perPage));
     } catch (err) {
       console.log(err);
     }

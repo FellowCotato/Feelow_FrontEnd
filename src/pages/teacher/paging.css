@@ -10,9 +10,7 @@ li {
   display: inline-block;
   width: 30px;
   height: 30px;
-  border: 1px solid #e2e2e2;
   margin: 4px;
-  border-radius: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -26,23 +24,12 @@ li:first-child {
 li:last-child {
   display: none;
 }
+li:nth-child(3) a {
+  font-size: 1.1rem;
+}
 
 li a {
   text-decoration: none;
   color: black;
-  font-size: 1rem;
-}
-
-li.active a {
-  color: white;
-}
-
-li.active {
-  background-color: #66c109;
-}
-
-.page-selection {
-  width: 48px;
-  height: 30px;
-  background-color: #66c109;
+  font-size: 1.5rem;
 }

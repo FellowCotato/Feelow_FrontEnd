@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { ButtonWrapper, Button, Buttons, ButtonContainer, ClassInfo } from "./style";
-import { ReactComponent as StoreImg } from "../../assets/store_img.svg";
-import { ReactComponent as ProfileImg } from "../../assets/profile_img.svg";
-import { ReactComponent as CalendarImg } from "../../assets/calendar_img.svg";
+import { ReactComponent as StudentListImg } from "../../assets/studentList_img.svg";
+import { ReactComponent as StudentChartImg } from "../../assets/studentChart_img.svg";
+import { ReactComponent as ProfileImg } from "../../assets/teacherProfile_img.svg";
 
 const TeacherMenu = ({ page, grade, classNum }) => {
   const [isStudentListActive, setIsStudentListActive] = useState(page === "studentList");
@@ -26,7 +26,7 @@ const TeacherMenu = ({ page, grade, classNum }) => {
             to="/teacher"
             color={isStudentListActive ? "#D7AB6E" : page === "studentList" ? "#B19B8F" : "#B0B0B0"}
           >
-            <StoreImg
+            <StudentListImg
               fill={
                 isStudentListActive ? "#D7AB6E" : page === "studentList" ? "#B19B8F" : "#B0B0B0"
               }
@@ -38,7 +38,7 @@ const TeacherMenu = ({ page, grade, classNum }) => {
             to="/studentChart"
             color={isStudentChartActive ? "#D7AB6E" : page === "chatting" ? "#B19B8F" : "#B0B0B0"}
           >
-            <CalendarImg
+            <StudentChartImg
               fill={isStudentChartActive ? "#D7AB6E" : page === "chatting" ? "#B19B8F" : "#B0B0B0"}
             />
             <p>학생차트</p>
