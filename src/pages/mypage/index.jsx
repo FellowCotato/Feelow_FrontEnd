@@ -1,10 +1,12 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   AdditionTotalBox,
   Btn,
   BtnDiv,
   Button,
+  CharacterImage,
+  DecoPeelowBtn,
   FlexBox,
   Img,
   InfoDiv,
@@ -17,6 +19,7 @@ import {
   ModalParagraph,
   ModalUnderGrayParagraph,
   ModalXButton,
+  MyPageTeacherNameText,
   Placeholder,
   UserInfoBox,
 } from "./style";
@@ -24,8 +27,16 @@ import characterImg from "../../assets/character_img.svg";
 import circleImg from "../../assets/circle_img.svg";
 import xButtonImg from "../../assets/xButton_img.svg";
 import ButtonBox from "../../layouts/ButtonBox";
+import { GetUserInfoApi } from "../../utils/User";
+import studentCharacter from "../../assets/studentCharacter.svg";
+import teacherCharacter from "../../assets/teacherCharacter.svg";
 
 const MyPage = () => {
+  const token = localStorage.getItem("token");
+  const memberId = localStorage.getItem("memberId");
+  const memberType = localStorage.getItem("member_type");
+
+  const [userInfo, setUserInfo] = useState({});
   const [isLogOutModal, setIsLogOutModal] = useState(false);
   const [isSignOutModal, setIsSignOutModal] = useState(false);
 
@@ -44,6 +55,21 @@ const MyPage = () => {
     setIsSignOutModal(false);
   };
 
+  const getUserInfo = async () => {
+    try {
+      await GetUserInfoApi(memberId, token).then((res) => {
+        console.log(res);
+        setUserInfo(res.data.data);
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getUserInfo();
+  }, []);
+
   return (
     <>
       <FlexBox style={{ width: "100vw", flexDirection: "column", backgroundColor: " #FFFBF8" }}>
@@ -53,59 +79,143 @@ const MyPage = () => {
             <ButtonBox />
           </FlexBox>
         </AdditionTotalBox>
+
         <UserInfoBox>
           <FlexBox>
-            <Img
-              Top="270px"
-              width="210px"
-              height="255px"
+            <CharacterImage
+              width="190px"
+              height="231px"
               zIndex="2"
               margin="0px 0px 0px -20px"
               src={characterImg}
               alt="character"
             />
             <Img src={circleImg} alt="character" />
+            {memberType === "student" ? (
+              <DecoPeelowBtn>내 필로우 꾸미기</DecoPeelowBtn>
+            ) : (
+              <MyPageTeacherNameText>{userInfo.teacherName} 선생님</MyPageTeacherNameText>
+            )}
           </FlexBox>
-          <InfoDiv margin="410px 0px 0px 0px">
-            <InfoLabel>학교</InfoLabel>
-            <InfoInput>서울대학교사범대학부설고등학교</InfoInput>
-          </InfoDiv>
-          <InfoDiv margin="33px 0px 0px 0px">
-            <InfoLabelFixedWidth>학년/반/번호</InfoLabelFixedWidth>
-            <InfoInput justifyContent="space-around" width="28%" maxWidth="63px">
-              2<Placeholder>학년</Placeholder>
-            </InfoInput>
-            <InfoInput
-              justifyContent="space-around"
-              margin="0px 0px 0px 6px"
-              width="28%"
-              maxWidth="63px"
-            >
-              2<Placeholder>반</Placeholder>
-            </InfoInput>
-            <InfoInput
-              justifyContent="space-around"
-              margin="0px 0px 0px 6px"
-              width="28%"
-              maxWidth="63px"
-            >
-              2<Placeholder>번호</Placeholder>
-            </InfoInput>
-          </InfoDiv>
-          <InfoDiv margin="33px 0px 0px 0px">
-            <InfoLabel>이름</InfoLabel>
-            <InfoInput>강희수</InfoInput>
-          </InfoDiv>
-          <InfoDiv margin="33px 0px 0px 0px">
-            <InfoLabel>닉네임</InfoLabel>
-            <InfoInput>빛나는물</InfoInput>
-          </InfoDiv>
-          <InfoDiv margin="50px 0px 0px" padding="0px 0px 85px 0px">
-            <Button onClick={handleOpenLogOutModal} color="#db6b6b">
-              로그아웃
-            </Button>
-            <Button onClick={handleOpenSignOutModal}>회원탈퇴</Button>
-          </InfoDiv>
+
+          <FlexBox style={{ flexDirection: "column" }}>
+            {memberType === "student" ? (
+              <>
+                <InfoDiv margin="55.92px 0px 0px 0px">
+                  <InfoLabel>학교</InfoLabel>
+                  <InfoInput>{userInfo.school}</InfoInput>
+                </InfoDiv>
+                <InfoDiv margin="33px 0px 0px 3px">
+                  <InfoLabelFixedWidth>학년/반/번호</InfoLabelFixedWidth>
+                  <InfoInput justifyContent="space-around" width="25%" maxWidth="56px">
+                    {userInfo.grade}
+                    <Placeholder>학년</Placeholder>
+                  </InfoInput>
+                  <InfoInput
+                    justifyContent="space-around"
+                    margin="0px 13px"
+                    width="25%"
+                    maxWidth="56px"
+                  >
+                    {userInfo.classNum}
+                    <Placeholder>반</Placeholder>
+                  </InfoInput>
+                  <InfoInput
+                    justifyContent="space-around"
+                    margin="0px 6px 0px 0px"
+                    width="25%"
+                    maxWidth="56px"
+                  >
+                    {userInfo.studentNumber}
+                    <Placeholder>번호</Placeholder>
+                  </InfoInput>
+                </InfoDiv>
+                <InfoDiv margin="33px 0px 0px 0px">
+                  <InfoLabel>이름</InfoLabel>
+                  <InfoInput>{userInfo.studentName}</InfoInput>
+                </InfoDiv>
+                <InfoDiv margin="33px 0px 0px 0px">
+                  <InfoLabel>닉네임</InfoLabel>
+                  <InfoInput>{userInfo.nickname}</InfoInput>
+                </InfoDiv>
+              </>
+            ) : (
+              <>
+                <InfoDiv margin="55.92px 0px 0px 0px">
+                  <InfoLabel>학교</InfoLabel>
+                  <InfoInput>{userInfo.school}</InfoInput>
+                </InfoDiv>
+                <InfoDiv margin="33px 0px 0px 0px">
+                  <InfoLabel>학년</InfoLabel>
+                  <InfoInput
+                    margin="0px 0px 0px 0px"
+                    justifyContent="space-around"
+                    width="25%"
+                    maxWidth="70px"
+                  >
+                    {userInfo.grade}
+                    <Placeholder>학년</Placeholder>
+                  </InfoInput>
+                  <InfoInput
+                    margin="0px 0px 0px 6px"
+                    justifyContent="space-around"
+                    width="25%"
+                    maxWidth="70px"
+                    border="none"
+                    background="none"
+                  ></InfoInput>
+                  <InfoInput
+                    margin="0px 0px 0px 6px"
+                    justifyContent="space-around"
+                    width="25%"
+                    maxWidth="60px"
+                    border="none"
+                    background="none"
+                  ></InfoInput>
+                </InfoDiv>
+                <InfoDiv margin="33px 0px 0px 0px">
+                  <InfoLabel>반</InfoLabel>
+                  <InfoInput
+                    margin="0px 0px 0px 0px"
+                    justifyContent="space-around"
+                    width="25%"
+                    maxWidth="70px"
+                  >
+                    {userInfo.classNum}
+                    <Placeholder>반</Placeholder>
+                  </InfoInput>
+                  <InfoInput
+                    margin="0px 0px 0px 6px"
+                    justifyContent="space-around"
+                    width="25%"
+                    maxWidth="70px"
+                    border="none"
+                    background="none"
+                  ></InfoInput>
+                  <InfoInput
+                    margin="0px 0px 0px 6px"
+                    justifyContent="space-around"
+                    width="25%"
+                    maxWidth="60px"
+                    border="none"
+                    background="none"
+                  ></InfoInput>
+                </InfoDiv>
+
+                <InfoDiv margin="33px 0px 0px 0px">
+                  <InfoLabel>이름</InfoLabel>
+                  <InfoInput>{userInfo.teacherName}</InfoInput>
+                </InfoDiv>
+              </>
+            )}
+
+            <InfoDiv margin="50px 0px 0px" padding="0px 0px 85px 0px">
+              <Button onClick={handleOpenLogOutModal} color="#db6b6b">
+                로그아웃
+              </Button>
+              <Button onClick={handleOpenSignOutModal}>회원탈퇴</Button>
+            </InfoDiv>
+          </FlexBox>
         </UserInfoBox>
         {isLogOutModal ? (
           <Modal>

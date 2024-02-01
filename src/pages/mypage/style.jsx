@@ -29,11 +29,55 @@ export const UserInfoBox = styled.div`
 
 export const Img = styled.img`
   position: absolute;
-  width: ${(props) => props.width || "279px"};
-  height: ${(props) => props.height || "279px"};
+  width: ${(props) => props.width || "253px"};
+  height: ${(props) => props.height || "253px"};
   z-index: ${(props) => props.zIndex || "1"};
   top: ${(props) => props.Top || "230px"};
   margin: ${(props) => props.margin || "0px"};
+  @media screen and (max-width: 480px) {
+    top: 210px;
+  }
+`;
+export const CharacterImage = styled(Img)`
+  top: 270px;
+  @media screen and (max-width: 480px) {
+    top: 250px;
+  }
+`;
+
+export const DecoPeelowBtn = styled.button`
+  margin: 363px 0px 0px 0px;
+  padding: 10px 64px;
+  gap: 10px;
+  border: none;
+  border-radius: 40px;
+  background: var(--Point-Color, #d7ab6e);
+  color: var(--White, #fff);
+  font-family: Pretendard;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.36px;
+  /* 정보입력 */
+  box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.18);
+  @media screen and (max-width: 768px) {
+    margin: 393px 0px 0px 0px;
+  }
+`;
+
+export const MyPageTeacherNameText = styled.div`
+  margin: 363px 0px 0px 0px;
+  color: var(--Main-Font, #2c2c2c);
+  text-align: center;
+  /* Title */
+  font-family: Pretendard;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.28px;
+  @media screen and (max-width: 768px) {
+    margin: 393px 0px 0px 0px;
+  }
 `;
 
 export const InfoDiv = styled.div`
@@ -44,6 +88,7 @@ export const InfoDiv = styled.div`
   justify-content: center;
   margin: ${(props) => props.margin || "0px"};
   padding: ${(props) => props.padding || "0px"};
+  max-width: 470px;
 `;
 
 export const InfoLabel = styled.label`
@@ -82,8 +127,8 @@ export const InfoInput = styled.div`
   padding: 0px 0px 0px 24px;
   border-radius: 20px;
   margin: ${(props) => props.margin || "0px"};
-  border: 2px solid #809f80;
-  background: #fff;
+  border: ${(props) => props.border || "2px solid #809f80"};
+  background: ${(props) => props.background || "#fff"};
   color: var(--Main-Font, #2c2c2c);
   font-family: "Pretendard";
 `;

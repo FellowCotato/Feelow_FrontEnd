@@ -10,6 +10,7 @@ import Chatting from "./pages/Chatting";
 import MyPage from "./pages/mypage";
 import LoginComplete from "./pages/loginComplete";
 import Calendar from "./pages/Calendar";
+import TeacherPage from "./pages/teacher";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/mypage" element={<MyPage />}></Route>
           <Route path="/goto/addition" element={<LoginComplete />}></Route>
           <Route path="/calendar" element={<Calendar />}></Route>
+          <Route path="/teacher" element={<TeacherPage />}></Route>
         </Routes>
       </Router>
     </RecoilRoot>

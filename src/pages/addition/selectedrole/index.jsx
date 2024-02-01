@@ -1,12 +1,17 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { AdditionTotalBox, FlexBox, LogoName } from "../style";
 import { CheckRegx, OtherLabel, RoleLabel, TextInput } from "./style";
 import Select from "react-select";
 import { OptionsGrade, OptionsClass, OptionsNumber } from "./components/optionsList.jsx";
 import { BlankButton } from "../../../components/button";
 import data from "./components/School.json";
+import { AdditionalInfoApi, SelectRoleApi } from "../../../utils/User.jsx";
 const PlusAddition = () => {
+  const memberId = localStorage.getItem("memberId");
+  const token = localStorage.getItem("token");
+  const navigate = useNavigate();
   // 값이 결정되었는데 boolean 확인
   const [isSchool, setIsSchool] = useState(false);
   const [isGrade, setIsGrade] = useState(false);
@@ -19,26 +24,46 @@ const PlusAddition = () => {
   const { state } = useLocation();
   const [userInfo, setUserInfo] = useState({});
 
+  const SelectRole = async () => {
+    try {
+      console.log(memberId);
+      // console.log(role);
+      // console.log(token);
+      console.log(state.role);
+      await SelectRoleApi(memberId, state.role, token).then((res) => {
+        console.log(res);
+
+        if (res.data.success === false) {
+          alert("해당 ID의 회원을 찾을 수 없습니다.");
+        } else {
+          const member_type = res.data.data.memberType;
+          localStorage.setItem("member_type", member_type);
+        }
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
+    SelectRole();
     if (state.role === "선생님") {
       setIsNumber(true);
       setIsNickname(true);
       setUserInfo({
-        role: state.role,
         school: "",
         grade: "",
-        class: "",
-        number: "",
+        class_num: "",
+        student_number: null,
         name: "",
-        nickname: "",
+        nickname: null,
       });
     } else {
       setUserInfo({
-        role: state.role,
         school: "",
         grade: "",
-        class: "",
-        number: "",
+        class_num: "",
+        student_number: "",
         name: "",
         nickname: "",
       });
@@ -73,7 +98,7 @@ const PlusAddition = () => {
     setSelectedOptionClass(selectedOptionClass);
     setUserInfo({
       ...userInfo,
-      class: selectedOptionClass.label,
+      class_num: selectedOptionClass.label,
     });
     setIsClass(true);
   };
@@ -81,7 +106,7 @@ const PlusAddition = () => {
     setSelectedOptionNumber(selectedOptionNumber);
     setUserInfo({
       ...userInfo,
-      number: selectedOptionNumber.label,
+      student_number: selectedOptionNumber.label,
     });
     setIsNumber(true);
   };
@@ -278,12 +303,39 @@ const PlusAddition = () => {
       },
     }),
   };
+  const postAddition = async () => {
+    try {
+      // console.log(userInfo);
+      await AdditionalInfoApi(memberId, userInfo, token).then((res) => {
+        console.log(res);
+        if (res.data.success === false) {
+          alert(res.data.message);
+        } else if (res.data.message === "이미 저장된 학생입니다.") {
+          alert(res.data.message);
+        } else if (res.data.message === "이미 저장된 선생님입니다.") {
+          alert(res.data.message);
+        } else {
+          if (state.role === "학생") {
+            localStorage.setItem("studentId", res.data.data.studentId);
+            alert("회원가입 되었습니다!");
+            navigate("/chatting");
+          } else {
+            localStorage.setItem("teacherId", res.data.data.teacherId);
+            alert("회원가입 되었습니다!");
+            navigate("/chatting");
+          }
+        }
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const signUpButton = () => {
     if (!isSchool || !isGrade || !isClass || !isNumber || !isName || !isNickname) {
       alert("모든 항목을 작성해주세요!");
     } else {
-      alert("회원가입 되었습니다!\n다시 로그인을 진행해주세요");
+      postAddition();
     }
   };
 
@@ -394,16 +446,29 @@ const PlusAddition = () => {
               *두 글자 이상 입력해 주세요.
             </CheckRegx>
           )}
-          <BlankButton
-            backgroundColor="#D0D0D0"
-            color="#fff"
-            width="279px"
-            borderColor="#D0D0D0"
-            style={{ margin: "37px 0px 89px" }}
-            onClick={signUpButton}
-          >
-            시작하기
-          </BlankButton>
+          {isSchool && isGrade && isClass && isNumber && isName && isNickname ? (
+            <BlankButton
+              backgroundColor="#D7AB6E"
+              color="#fff"
+              width="279px"
+              borderColor="#D7AB6E"
+              style={{ margin: "37px 0px 89px" }}
+              onClick={signUpButton}
+            >
+              시작하기
+            </BlankButton>
+          ) : (
+            <BlankButton
+              backgroundColor="#D0D0D0"
+              color="#fff"
+              width="279px"
+              borderColor="#D0D0D0"
+              style={{ margin: "37px 0px 89px" }}
+              onClick={signUpButton}
+            >
+              시작하기
+            </BlankButton>
+          )}
         </FlexBox>
       </AdditionTotalBox>
     </FlexBox>
