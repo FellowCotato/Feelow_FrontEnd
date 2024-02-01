@@ -5,6 +5,8 @@ import { ReactComponent as StoreImg } from "../../assets/store_img.svg";
 import { ReactComponent as ProfileImg } from "../../assets/profile_img.svg";
 import { ReactComponent as CalendarImg } from "../../assets/calendar_img.svg";
 
+// 코튼 모달 이쪽으로 빼야함
+
 const ButtonBox = ({ cottonCount, page, setIsCottonModalOpen }) => {
   const [isStoreActive, setIsStoreActive] = useState(page === "store");
   const [isProfileActive, setIsProfileActive] = useState(page === "profile");

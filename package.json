@@ -12,6 +12,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "prettier": "^3.0.3",
     "react": "^18.2.0",
+    "react-calendar": "^4.8.0",
     "react-custom-scrollbars-2": "^4.5.0",
     "react-dom": "^18.2.0",
     "react-js-pagination": "^3.0.3",

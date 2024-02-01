@@ -1,14 +1,14 @@
 import styled, { keyframes } from "styled-components";
+import { ReactComponent as Character } from "../../../assets/feelow_character.svg";
 
 export const ChatContainer = styled.div`
   display: flex;
   justify-content: ${(props) => (props.sender === "bot" ? "start" : "end")};
 `;
 
-export const BotImg = styled.img`
+export const FeelowCharacter = styled(Character)`
   width: 68px;
   height: 88px;
-  flex-shrink: 0;
   background-color: transparent;
 
   @media only screen and (max-width: 768px) {
