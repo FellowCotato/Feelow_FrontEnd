@@ -45,7 +45,9 @@ export const DateWrapper = styled.div`
 
       @media only screen and (max-width: 768px) {
         width: 44px;
+        max-width: 100%;
         height: 44px;
+        max-height: 100%;
       }
     `}
 

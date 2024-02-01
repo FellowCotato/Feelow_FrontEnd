@@ -1,6 +1,10 @@
 import React, { useCallback, useState, useEffect } from "react";
 import { AcitveDot, DateWrapper, StyledFeelowCharacter, TileWrapper } from "./styles";
 
+/*
+일 숫자 조정
+*/
+
 const TileContent = ({ activeStartDate, date, onClickTile }) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
@@ -17,7 +21,7 @@ const TileContent = ({ activeStartDate, date, onClickTile }) => {
 
   const onClickTileWrapper = useCallback(() => {
     onClickTile(date);
-  }, []);
+  }, [date]);
 
   const currentDate = new Date();
   currentDate.setHours(0, 0, 0, 0);

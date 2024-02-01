@@ -8,6 +8,10 @@ export const ModalOverlay = styled.div`
   height: 100%;
   background: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(2px);
+
+  @media only screen and (max-width: 768px) {
+    background: rgba(0, 0, 0, 0.2);
+  }
 `;
 
 export const ModalBackground = styled.div`
@@ -15,16 +19,25 @@ export const ModalBackground = styled.div`
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 
   background: #fff;
   width: 800px;
-  max-width: 90%;
   height: 430px;
   border-radius: 36px;
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.4);
+
+  @media only screen and (min-width: 768px) {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 80%;
+  }
+
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+    height: 440px;
+    bottom: -40px;
+  }
 `;
 
 export const ModalBox = styled.div`
@@ -45,6 +58,22 @@ export const CloseButton = styled(CloseIcon)`
   width: 36px;
   height: 36px;
   cursor: pointer;
+
+  @media only screen and (max-width: 768px) {
+    display: none;
+  }
+`;
+
+export const CloseBar = styled.div`
+  margin-top: 16px;
+  width: 54px;
+  height: 4px;
+  border-radius: 2.5px;
+  background: #b0b0b0;
+
+  @media only screen and (min-width: 768px) {
+    display: none;
+  }
 `;
 
 const fontStyle = css`
@@ -55,13 +84,21 @@ const fontStyle = css`
   line-height: 21px;
   letter-spacing: 0.36px;
   margin: 0;
+
+  @media only screen and (max-width: 768px) {
+    font-size: 12px;
+  }
 `;
 
 export const ModalHeader = styled.h3`
-  ${fontStyle}
+  ${fontStyle};
   font-size: 32px;
   font-weight: 600;
   margin-top: 36px;
+
+  @media only screen and (max-width: 768px) {
+    font-size: 20px;
+  }
 `;
 
 export const ContentWrapper = styled.div`
@@ -69,6 +106,10 @@ export const ContentWrapper = styled.div`
   justify-content: center;
   width: 100%;
   height: 100%;
+
+  @media only screen and (max-width: 768px) {
+    margin-bottom: 40px;
+  }
 `;
 
 export const ContentBox = styled.div`
@@ -90,6 +131,11 @@ export const CharacterWrapper = styled.div`
   > svg {
     width: 132px;
     height: 180px;
+
+    @media only screen and (max-width: 768px) {
+      width: 92px;
+      height: 124px;
+    }
   }
 `;
 
@@ -98,6 +144,10 @@ export const TextWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-right: 48px;
+
+  @media only screen and (max-width: 768px) {
+    margin-right: 32px;
+  }
 `;
 
 export const ChatSummary = styled.div`
@@ -105,6 +155,11 @@ export const ChatSummary = styled.div`
     ${fontStyle}
     font-weight: 600;
     margin-bottom: 20px;
+
+    @media only screen and (max-width: 768px) {
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
   }
 
   > p {
@@ -134,5 +189,9 @@ export const TodayWord = styled.div`
     font-weight: 600;
     line-height: 21px;
     letter-spacing: 0.4px;
+
+    @media only screen and (max-width: 768px) {
+      font-size: 14px;
+    }
   }
 `;

@@ -2,10 +2,10 @@ import React, { useEffect, useRef } from "react";
 import {
   CharacterWrapper,
   ChatSummary,
+  CloseBar,
   CloseButton,
   ContentBox,
   ContentWrapper,
-  // Feelow,
   Horizon,
   ModalBackground,
   ModalBox,
@@ -45,6 +45,7 @@ const CalendarModal = ({ modalOpen, setModalOpen, date }) => {
       <ModalBackground ref={modalRef}>
         <ModalBox>
           <CloseButton onClick={() => setModalOpen(false)} />
+          <CloseBar />
           <ModalHeader>
             {date.getMonth() + 1}/{date.getDate()}
           </ModalHeader>

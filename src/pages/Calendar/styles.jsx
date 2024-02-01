@@ -28,6 +28,7 @@ export const CalendarBox = styled.div`
   margin: 36px 0;
 
   @media only screen and (max-width: 768px) {
+    position: static;
     width: 90%;
   }
 `;
@@ -66,7 +67,7 @@ export const StyledCalendar = styled(Calendar)`
       line-height: 20px;
 
       @media only screen and (max-width: 768px) {
-        max-width: 80px;
+        max-width: 88px;
         font-size: 18px;
       }
     }
