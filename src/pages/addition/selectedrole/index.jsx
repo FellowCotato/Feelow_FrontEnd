@@ -322,7 +322,7 @@ const PlusAddition = () => {
           } else {
             localStorage.setItem("teacherId", res.data.data.teacherId);
             alert("회원가입 되었습니다!");
-            navigate("/chatting");
+            navigate("/teacher");
           }
         }
       });

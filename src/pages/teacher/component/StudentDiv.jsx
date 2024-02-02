@@ -5,7 +5,7 @@ export const StudentDiv = ({ item, perPage }) => {
   return (
     <Box perPage={perPage}>
       <BoxTop>
-        {item.studentId} {item.studentName}
+        {item.student_number} {item.name}
       </BoxTop>
       <BoxLine />
       <BoxImg src={item.studentImg} alt="character" />

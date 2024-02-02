@@ -44,7 +44,7 @@ const TeacherMenu = ({ page, grade, classNum }) => {
             <p>학생차트</p>
           </Button>
           <Button
-            to="/profile"
+            to="/mypage"
             color={isProfileActive ? "#D7AB6E" : page === "chatting" ? "#B19B8F" : "#B0B0B0"}
           >
             <ProfileImg
