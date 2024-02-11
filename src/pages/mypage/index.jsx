@@ -30,11 +30,15 @@ import ButtonBox from "../../layouts/ButtonBox";
 import { GetUserInfoApi } from "../../utils/User";
 import studentCharacter from "../../assets/studentCharacter.svg";
 import teacherCharacter from "../../assets/teacherCharacter.svg";
+import useWindowSize from "../../hook/WindowSize";
+import TeacherMenuBar from "../../layouts/TeacherMenuBar";
 
 const MyPage = () => {
   const token = localStorage.getItem("token");
   const memberId = localStorage.getItem("memberId");
   const memberType = localStorage.getItem("member_type");
+  // 윈도우 브라우저 너비
+  const { width } = useWindowSize();
 
   const [userInfo, setUserInfo] = useState({});
   const [isLogOutModal, setIsLogOutModal] = useState(false);
@@ -76,21 +80,56 @@ const MyPage = () => {
         <AdditionTotalBox>
           <FlexBox style={{ flexDirection: "column" }}>
             <LogoName>Feelow</LogoName>
-            <ButtonBox />
+            {memberType === "student" ? (
+              <ButtonBox />
+            ) : (
+              <TeacherMenuBar page="profile" grade={userInfo.grade} classNum={userInfo.classNum} />
+            )}
           </FlexBox>
         </AdditionTotalBox>
 
         <UserInfoBox>
           <FlexBox>
-            <CharacterImage
-              width="190px"
-              height="231px"
-              zIndex="2"
-              margin="0px 0px 0px -20px"
-              src={characterImg}
-              alt="character"
-            />
-            <Img src={circleImg} alt="character" />
+            {width > 768 ? (
+              memberType === "student" ? (
+                <CharacterImage
+                  width="253px"
+                  height="270.91px"
+                  zIndex="2"
+                  margin="0px 0px 0px -20px"
+                  src={studentCharacter}
+                  alt="character"
+                />
+              ) : (
+                <CharacterImage
+                  width="236.19px"
+                  height="273.66px"
+                  zIndex="2"
+                  margin="0px 0px 0px -20px"
+                  src={teacherCharacter}
+                  alt="character"
+                />
+              )
+            ) : memberType === "student" ? (
+              <CharacterImage
+                width="165.06px"
+                height="177.06px"
+                zIndex="2"
+                margin="0px 0px 0px -20px"
+                src={studentCharacter}
+                alt="character"
+              />
+            ) : (
+              <CharacterImage
+                width="165.71px"
+                height="192px"
+                zIndex="2"
+                margin="0px 0px 0px -20px"
+                src={teacherCharacter}
+                alt="character"
+              />
+            )}
+
             {memberType === "student" ? (
               <DecoPeelowBtn>내 필로우 꾸미기</DecoPeelowBtn>
             ) : (
@@ -157,7 +196,7 @@ const MyPage = () => {
                     <Placeholder>학년</Placeholder>
                   </InfoInput>
                   <InfoInput
-                    margin="0px 0px 0px 6px"
+                    margin="0px 5px 0px 6px"
                     justifyContent="space-around"
                     width="25%"
                     maxWidth="70px"
@@ -176,7 +215,7 @@ const MyPage = () => {
                 <InfoDiv margin="33px 0px 0px 0px">
                   <InfoLabel>반</InfoLabel>
                   <InfoInput
-                    margin="0px 0px 0px 0px"
+                    margin="0px 5px 0px 0px"
                     justifyContent="space-around"
                     width="25%"
                     maxWidth="70px"

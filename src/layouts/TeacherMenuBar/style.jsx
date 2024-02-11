@@ -73,12 +73,11 @@ export const Button = styled(Link)`
   }
 
   > svg {
-    width: 36px;
-    height: 32px;
-
+    width: 34.87px;
+    height: 34px;
     @media only screen and (max-width: 768px) {
       width: 26px;
-      height: 22px;
+      height: 26px;
     }
   }
 

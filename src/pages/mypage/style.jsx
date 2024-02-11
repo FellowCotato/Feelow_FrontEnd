@@ -39,9 +39,9 @@ export const Img = styled.img`
   }
 `;
 export const CharacterImage = styled(Img)`
-  top: 270px;
-  @media screen and (max-width: 480px) {
-    top: 250px;
+  top: 240px;
+  @media screen and (max-width: 768px) {
+    top: 190px;
   }
 `;
 
@@ -76,7 +76,7 @@ export const MyPageTeacherNameText = styled.div`
   line-height: normal;
   letter-spacing: 0.28px;
   @media screen and (max-width: 768px) {
-    margin: 393px 0px 0px 0px;
+    margin: 263px 0px 0px 0px;
   }
 `;
 
@@ -126,10 +126,10 @@ export const InfoInput = styled.div`
   height: 43px;
   padding: 0px 0px 0px 24px;
   border-radius: 20px;
-  margin: ${(props) => props.margin || "0px"};
+  margin: ${(props) => props.margin || "0px 5px 0px 0px"};
   border: ${(props) => props.border || "2px solid #809f80"};
   background: ${(props) => props.background || "#fff"};
-  color: var(--Main-Font, #2c2c2c);
+  color: var(--Main-Font, #503d3d);
   font-family: "Pretendard";
 `;
 
