@@ -17,7 +17,7 @@ import Pagination from "react-js-pagination";
 import "./paging.css";
 import { StudentComponent } from "./component/StudentsComponent";
 import useWindowSize from "../../hook/WindowSize";
-import TeacherMenu from "../../layouts/TeacherMenuBar";
+import TeacherMenuBar from "../../layouts/TeacherMenuBar";
 
 const TeacherPage = () => {
   const token = localStorage.getItem("token");
@@ -270,7 +270,7 @@ const TeacherPage = () => {
           <FlexBox style={{ flexDirection: "column" }}>
             <LogoName>Feelow</LogoName>
             {/* <ButtonBox /> */}
-            <TeacherMenu page="studentList" grade={grade} classNum={classNum} />
+            <TeacherMenuBar page="studentList" grade={grade} classNum={classNum} />
           </FlexBox>
         </AdditionTotalBox>
         <UserInfoComponent>
