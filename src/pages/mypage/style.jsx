@@ -39,7 +39,7 @@ export const Img = styled.img`
   }
 `;
 export const CharacterImage = styled(Img)`
-  top: 240px;
+  top: 320px;
   @media screen and (max-width: 768px) {
     top: 190px;
   }
