@@ -27,6 +27,7 @@ const checkMemberStatus = async ({ userId, userEmail, userNickname, userConnecte
     if (response.data.success === true) {
       const data = response.data.data;
       const token = data.accessToken;
+      const refreshToken = data.refreshToken;
       const expiresIn = data.exprTime;
       const connectedAt = data.member.connected_at;
       const memberId = data.member.memberId;
@@ -36,6 +37,7 @@ const checkMemberStatus = async ({ userId, userEmail, userNickname, userConnecte
       if (response.data.message === "Already existing member") {
         // 이미 가입된 회원인 경우
         localStorage.setItem("token", token);
+        localStorage.setItem("refreshToken", refreshToken);
         localStorage.setItem("connectedAt", connectedAt);
         localStorage.setItem("exprTime", expiresIn);
         localStorage.setItem("memberId", memberId);
