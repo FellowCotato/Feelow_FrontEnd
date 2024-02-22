@@ -1,13 +1,23 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AdditionTotalBox, FlexBox, LogoName } from "../style";
-import { CheckRegx, OtherLabel, RoleLabel, TextInput } from "./style";
+import {
+  CheckRegx,
+  FileInput,
+  FileLabel,
+  OtherLabel,
+  Placeholder,
+  RoleLabel,
+  RowCompponent,
+  TextInput,
+  VisibleFileInput,
+} from "./style";
 import Select from "react-select";
 import { OptionsGrade, OptionsClass, OptionsNumber } from "./components/optionsList.jsx";
 import { BlankButton } from "../../../components/button";
 import data from "./components/School.json";
-import { AdditionalInfoApi, SelectRoleApi } from "../../../utils/User.jsx";
+import { AdditionalInfoApi, PostAdditionalImgApi, SelectRoleApi } from "../../../utils/User.jsx";
 const PlusAddition = () => {
   const memberId = localStorage.getItem("memberId");
   const token = localStorage.getItem("token");
@@ -94,6 +104,7 @@ const PlusAddition = () => {
     });
     setIsGrade(true);
   };
+
   const handleChangeClass = (selectedOptionClass) => {
     setSelectedOptionClass(selectedOptionClass);
     setUserInfo({
@@ -102,6 +113,7 @@ const PlusAddition = () => {
     });
     setIsClass(true);
   };
+
   const handleChangeNumber = (selectedOptionNumber) => {
     setSelectedOptionNumber(selectedOptionNumber);
     setUserInfo({
@@ -110,6 +122,7 @@ const PlusAddition = () => {
     });
     setIsNumber(true);
   };
+
   const handleChangeName = (e) => {
     const { name, value } = e.target;
     setUserInfo({
@@ -318,12 +331,41 @@ const PlusAddition = () => {
           if (state.role === "학생") {
             localStorage.setItem("studentId", res.data.data.studentId);
             alert("회원가입 되었습니다!");
-            navigate("/chatting");
+            navigate("/");
           } else {
-            localStorage.setItem("teacherId", res.data.data.teacherId);
-            alert("회원가입 되었습니다!");
-            navigate("/teacher");
+            alert("회원 가입 되었습니다. 이후 교사 인증이 확인 될 시 로그인 할 수 있습니다.");
+            navigate("/");
           }
+        }
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const [selectedFilePath, setSelectedFilePath] = useState("");
+  const [entireFile, setEntireFile] = useState();
+  const fileInputRef = useRef(null); // useRef 추가
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setSelectedFilePath(file.name);
+      setEntireFile(file);
+      // setSelectedFilePath(URL.createObjectURL(file));
+      // 파일 경로 설정
+    } else {
+      setSelectedFilePath(""); // 파일이 선택되지 않은 경우 경로 초기화
+      setEntireFile();
+    }
+  };
+  const postFile = async () => {
+    try {
+      await PostAdditionalImgApi(memberId, entireFile, token).then((res) => {
+        console.log(res);
+        if (res.data.statusCode === 200) {
+          console.log("파일첨부 성공");
+        } else {
+          console.log("파일첨부 실패");
         }
       });
     } catch (err) {
@@ -334,7 +376,12 @@ const PlusAddition = () => {
   const signUpButton = () => {
     if (!isSchool || !isGrade || !isClass || !isNumber || !isName || !isNickname) {
       alert("모든 항목을 작성해주세요!");
+    } else if (selectedFilePath === "") {
+      alert("교사인증 파일을 첨부해주세요.");
     } else {
+      if (userInfo.student_number === null) {
+        postFile();
+      }
       postAddition();
     }
   };
@@ -446,6 +493,22 @@ const PlusAddition = () => {
               *두 글자 이상 입력해 주세요.
             </CheckRegx>
           )}
+          {state.role === "선생님" ? (
+            <>
+              <OtherLabel marginTop="25px">GPKI를 통한 교사인증서를 첨부해주세요.</OtherLabel>
+              {/* <OtherLabel marginTop="5px">첨부해주세요.</OtherLabel> */}
+              <FileInput type="file" onChange={handleFileChange} ref={fileInputRef} />
+
+              <VisibleFileInput
+                onClick={() => fileInputRef.current.click()} // 클릭 시 input 열기
+              >
+                {selectedFilePath ? selectedFilePath : "파일 선택하기"}
+              </VisibleFileInput>
+            </>
+          ) : (
+            <></>
+          )}
+
           {isSchool && isGrade && isClass && isNumber && isName && isNickname ? (
             <BlankButton
               backgroundColor="#D7AB6E"

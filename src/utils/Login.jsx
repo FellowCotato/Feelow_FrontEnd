@@ -27,15 +27,17 @@ const checkMemberStatus = async ({ userId, userEmail, userNickname, userConnecte
     if (response.data.success === true) {
       const data = response.data.data;
       const token = data.accessToken;
+      const refreshToken = data.refreshToken;
       const expiresIn = data.exprTime;
       const connectedAt = data.member.connected_at;
       const memberId = data.member.memberId;
       const nickname = data.member.nickname;
       const email = data.member.email;
-
+      const approvalStatus = data.member.approvalStatus;
       if (response.data.message === "Already existing member") {
         // 이미 가입된 회원인 경우
         localStorage.setItem("token", token);
+        localStorage.setItem("refreshToken", refreshToken);
         localStorage.setItem("connectedAt", connectedAt);
         localStorage.setItem("exprTime", expiresIn);
         localStorage.setItem("memberId", memberId);
@@ -44,11 +46,16 @@ const checkMemberStatus = async ({ userId, userEmail, userNickname, userConnecte
         localStorage.setItem("member_type", data.member.member_type);
         localStorage.setItem("studentId", data.member.studentId);
         localStorage.setItem("teacherId", data.member.teacherId);
+
         console.log("이미 가입된 회원입니다", response);
         if (data.member.member_type === "student") {
           return "/chatting";
         } else if (data.member.member_type === "teacher") {
-          return "/teacher";
+          if (approvalStatus === "APPROVED") {
+            return "/teacher";
+          } else {
+            alert("교사인증 보류상태입니다.");
+          }
         }
       } else {
         // 새로 회원 가입 성공한 경우

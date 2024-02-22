@@ -32,8 +32,11 @@ import studentCharacter from "../../assets/studentCharacter.svg";
 import teacherCharacter from "../../assets/teacherCharacter.svg";
 import useWindowSize from "../../hook/WindowSize";
 import TeacherMenuBar from "../../layouts/TeacherMenuBar";
+import { useNavigate } from "react-router-dom";
 
 const MyPage = () => {
+  const navigate = useNavigate();
+
   const token = localStorage.getItem("token");
   const memberId = localStorage.getItem("memberId");
   const memberType = localStorage.getItem("member_type");
@@ -73,6 +76,12 @@ const MyPage = () => {
   useEffect(() => {
     getUserInfo();
   }, []);
+
+  const LogOut = () => {
+    localStorage.clear();
+    setIsLogOutModal(false);
+    navigate("/");
+  };
 
   return (
     <>
@@ -265,7 +274,12 @@ const MyPage = () => {
               <Btn onClick={handleCloseLogOutModal} margin="59px 0px 0px 0px">
                 취소
               </Btn>
-              <Btn backgroundColor="#D7AB6E" color="#fff" margin="59px 30.5px 0px 15.5px">
+              <Btn
+                onClick={LogOut}
+                backgroundColor="#D7AB6E"
+                color="#fff"
+                margin="59px 30.5px 0px 15.5px"
+              >
                 로그아웃
               </Btn>
             </BtnDiv>
