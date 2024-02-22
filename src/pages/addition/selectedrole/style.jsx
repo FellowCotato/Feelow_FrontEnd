@@ -68,3 +68,24 @@ export const CheckRegx = styled.p`
     margin-left: 9vw;
   }
 `;
+
+export const FileInput = styled.input`
+  display: none;
+`;
+
+export const VisibleFileInput = styled.button`
+  text-align: left;
+  margin-top: 31px;
+  width: 85vw;
+  max-width: 490px;
+  height: 50px;
+  border-radius: 18px;
+  border: 2px solid #809f80;
+  color: #666;
+  background-color: #fff;
+  border-color: #809f80;
+  box-shadow: 0 0 0 1px #809f80;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  padding: 10px 15px;
+`;
