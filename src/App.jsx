@@ -9,6 +9,8 @@ import PlusAddition from "./pages/addition/selectedrole";
 import Chatting from "./pages/Chatting";
 import MyPage from "./pages/mypage";
 import LoginComplete from "./pages/loginComplete";
+import Calendar from "./pages/Calendar";
+import TeacherPage from "./pages/teacher";
 import Shop from "./pages/shop/index";
 
 function App() {
@@ -23,6 +25,8 @@ function App() {
           <Route path="/chatting" element={<Chatting />}></Route>
           <Route path="/mypage" element={<MyPage />}></Route>
           <Route path="/goto/addition" element={<LoginComplete />}></Route>
+          <Route path="/calendar" element={<Calendar />}></Route>
+          <Route path="/teacher" element={<TeacherPage />}></Route>
           <Route path="/store" element={<Shop />}></Route>
         </Routes>
       </Router>
