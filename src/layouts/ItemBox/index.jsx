@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Pagination from "../../components/Pagination";
 import { ItemBox, Title, Line, Cover, PointContainer, CottonPoint, NullContainer } from "./styles";
-import character from "../../assets/feelow_character.png";
+import character from "../../assets/feelow_character.svg";
 import cotton from "../../assets/cotton.png";
 import nullImg from "../../assets/x_img.png";
 

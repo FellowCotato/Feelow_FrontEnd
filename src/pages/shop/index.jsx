@@ -15,7 +15,7 @@ import ButtonBox from "../../layouts/ButtonBox";
 import { Item } from "../../layouts/ItemBox";
 import Modal from "../../components/Modal";
 import frame from "../../assets/feelow_frame.png";
-import character from "../../assets/feelow_character.png";
+import character from "../../assets/feelow_character.svg";
 
 const IndexPage = () => {
   const user = { name: "냠냠", cotton: 0 };
@@ -53,6 +53,8 @@ const IndexPage = () => {
               ? selectedItemCover.item.title
               : ""
         }
+        selectedItemAccessory={selectedItemAccessory}
+        selectedItemCover={selectedItemCover}
       />
       <Header />
       <ButtonBox cottonCount={user.cotton} page="store" />

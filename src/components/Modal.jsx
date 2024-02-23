@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import close_icon from "../assets/close_icon.svg";
 import styled from "styled-components";
-import character from "../assets/feelow_character.png";
+import character from "../assets/feelow_character.svg";
 
 const Modal = ({ isOpen, setModalOpen, modalText, selectedItemAccessory, selectedItemCover }) => {
   const ModalOverlay = styled.div`
