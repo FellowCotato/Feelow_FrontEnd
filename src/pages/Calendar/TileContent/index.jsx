@@ -1,11 +1,7 @@
 import React, { useCallback, useState, useEffect } from "react";
 import { AcitveDot, DateWrapper, StyledFeelowCharacter, TileWrapper } from "./styles";
 
-/*
-일 숫자 조정
-*/
-
-const TileContent = ({ activeStartDate, date, onClickTile }) => {
+const TileContent = ({ activeStartDate, date, onClickTile, historys }) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
@@ -40,7 +36,7 @@ const TileContent = ({ activeStartDate, date, onClickTile }) => {
       >
         <p>{date.getDate()}</p>
       </DateWrapper>
-      {(date.getDay() === 1 || date.getDate() === currentDate.getDate()) &&
+      {historys?.find((history) => date.getDate() === new Date(history.localDate).getDate()) &&
         (windowWidth <= 768 ? <AcitveDot /> : <StyledFeelowCharacter width={64} height={68} />)}
     </TileWrapper>
   );

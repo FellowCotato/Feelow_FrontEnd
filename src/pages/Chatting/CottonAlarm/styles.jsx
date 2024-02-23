@@ -34,7 +34,7 @@ export const AlertBox = styled.div`
   background: #d7ab6e;
   box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.2);
 
-  animation: ${(props) => (props.isopen === "open" ? fadeIn : fadeOut)} 0.3s ease-out;
+  animation: ${(props) => (props.visible === "visible" ? fadeIn : fadeOut)} 0.3s ease-out;
 
   @media only screen and (max-width: 768px) {
     padding: 24px 48px;

@@ -1,10 +1,28 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 export const ModalOverlay = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.4);
+`;
+
+const fadeIn = keyframes`
+from {
+  opacity: 1;
+}
+to {
+  opacity: 0;
+}
+`;
+
+const fadeOut = keyframes`
+from {
+  opacity: 0;
+}
+to {
+  opacity: 1;
+}
 `;
 
 export const ModalBackground = styled.div`
@@ -21,6 +39,8 @@ export const ModalBackground = styled.div`
   height: 544px;
   border-radius: 35px;
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.4);
+
+  animation: ${(prpos) => (prpos.visible === "visible" ? fadeIn : fadeOut)} 0.3s ease-in-out;
 
   @media only screen and (max-width: 768px) {
     width: 332px;

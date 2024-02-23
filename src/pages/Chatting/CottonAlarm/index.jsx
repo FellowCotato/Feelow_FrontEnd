@@ -1,49 +1,42 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { AlertBox, CottonFive, CottonSentense } from "./styles";
 import cotton from "../../../assets/cotton.png";
 
-/*
-문의 사항
-
-fade-in, fade-out 속도조절
-*/
-
 const CottonAlarm = ({ isOpen, setAlarmOpen }) => {
+  const [isVisible, setIsVisible] = useState(true);
+
   const alarmRef = useRef(null);
 
   useEffect(() => {
-    const handleClick = (e) => {
-      if (alarmRef.current && !alarmRef.current.contains(e.target)) {
+    setTimeout(() => {
+      setIsVisible(false);
+      setTimeout(() => {
         setAlarmOpen(false);
+        setIsVisible(true);
+      }, 300);
+    }, 2000);
+  });
+
+  useEffect(() => {
+    const handleClick = (e) => {
+      setIsVisible(false);
+      if (alarmRef.current && !alarmRef.current.contains(e.target)) {
+        setTimeout(() => {
+          setAlarmOpen(false);
+          setIsVisible(true);
+        }, 300);
       }
     };
     window.addEventListener("mousedown", handleClick);
     return () => window.removeEventListener("mousedown", handleClick);
   }, [alarmRef]);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setAlarmOpen(false);
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  // useEffect(() => {
-  //   if (!isOpen) {
-  //     const delayTimer = setTimeout(() => {
-  //       setAlarmOpen(false);
-  //     }, 500);
-  //     return () => clearTimeout(delayTimer);
-  //   }
-  // }, [isOpen]);
-
   if (!isOpen) {
     return <></>;
   }
 
   return (
-    <AlertBox ref={alarmRef} isopen={isOpen ? "open" : "close"}>
+    <AlertBox ref={alarmRef} visible={isVisible ? "visible" : "non-visible"}>
       <CottonFive>
         <img src={cotton} alt="cotton" />
         <p>&nbsp;X 5</p>

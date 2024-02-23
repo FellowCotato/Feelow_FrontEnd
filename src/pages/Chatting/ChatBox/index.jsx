@@ -1,11 +1,8 @@
 import React, { useCallback, useState } from "react";
 import { FormContainer, Form, SendButton, TextArea } from "./styles";
 import chat_button from "../../../assets/chat_button.svg";
-
-/*
-전송버튼 위치 조절 (1920 1080 기준으로 밑으로)
-버튼 왼쪽으로 쫌 더 이동
-*/
+import api from "../../../utils/api";
+import dayjs from "dayjs";
 
 const ChatBox = ({ user, messages, setMessages, messageId, setMessageId }) => {
   const [chat, setChat] = useState("");
@@ -24,16 +21,34 @@ const ChatBox = ({ user, messages, setMessages, messageId, setMessageId }) => {
           sender: user.name,
           content: chat,
         },
-        {
-          id: messageId + 1,
-          sender: "bot",
-          content: "",
-        },
       ]);
-      setMessageId(messageId + 2);
+
+      api
+        .post(`/api/chat/${localStorage.getItem("memberId")}/${dayjs().format("YYYY-MM-DD")}`, {
+          input: chat,
+        })
+        .then((res) => {
+          const reply = res.data.response;
+          setMessages([
+            ...messages,
+            {
+              id: messageId,
+              sender: user.name,
+              content: chat,
+            },
+            {
+              id: messageId + 1,
+              sender: "bot",
+              content: reply,
+            },
+          ]);
+        })
+        .catch((err) => console.error(err));
+
       setChat("");
+      setMessageId(messageId + 2);
     },
-    [chat, messages, messageId],
+    [chat, user, messages, messageId],
   );
 
   const onKeydownChat = useCallback(

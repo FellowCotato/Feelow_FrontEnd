@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   CharacterWrapper,
   ChatSummary,
@@ -16,53 +16,112 @@ import {
 } from "./styles";
 import { ReactComponent as FeelowCharacter } from "../../../assets/feelow_character.svg";
 
-const content = {
-  summary: "시험을 망침. 필로우가 위로해줌. 다음에 더 잘해야겠다고 다짐함.",
-  todayWord: "“수고했어, 힘내!!”",
-};
+const CalendarModal = ({ modalOpen, setModalOpen, date, historys }) => {
+  const [initialPosition, setInitialPosition] = useState(0);
+  const [positionOffset, setPositionOffset] = useState(0);
+  const [isVisible, setIsVisible] = useState(true);
 
-const CalendarModal = ({ modalOpen, setModalOpen, date }) => {
   const modalRef = useRef(null);
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, []);
 
   useEffect(() => {
     const handleClick = (e) => {
       if (modalRef.current && !modalRef.current.contains(e.target)) {
-        setModalOpen(false);
+        setIsVisible(false);
+        setTimeout(() => {
+          setModalOpen(false);
+          setPositionOffset(0);
+          setInitialPosition(0);
+          setIsVisible(true);
+        }, 300);
       }
     };
     window.addEventListener("mousedown", handleClick);
     return () => window.removeEventListener("mousedown", handleClick);
   }, [modalRef]);
 
+  const handleTouchStart = useCallback((e) => {
+    setInitialPosition(e.targetTouches[0].pageY);
+  }, []);
+
+  const handleTouchMove = useCallback(
+    (e) => {
+      setPositionOffset(initialPosition - e.targetTouches[0].pageY);
+    },
+    [initialPosition],
+  );
+
+  const handleTouchEnd = useCallback(() => {
+    if (positionOffset < -125) {
+      setIsVisible(false);
+      setTimeout(() => {
+        setModalOpen(false);
+        setPositionOffset(0);
+        setInitialPosition(0);
+        setIsVisible(true);
+      }, 300);
+    } else {
+      setPositionOffset(0);
+    }
+  }, [positionOffset]);
+
   if (!modalOpen) {
     return <></>;
   }
 
-  console.log(date);
+  if (historys.find((history) => new Date(history.localDate).getDate() !== date.getDate())) {
+    return <></>;
+  }
 
   return (
     <ModalOverlay>
-      <ModalBackground ref={modalRef}>
+      <ModalBackground
+        ref={modalRef}
+        offset={positionOffset}
+        visible={isVisible ? "visible" : "invisible"}
+      >
         <ModalBox>
           <CloseButton onClick={() => setModalOpen(false)} />
-          <CloseBar />
+          <CloseBar
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          />
           <ModalHeader>
             {date.getMonth() + 1}/{date.getDate()}
           </ModalHeader>
           <ContentWrapper>
             <ContentBox>
               <CharacterWrapper>
-                <FeelowCharacter />
+                <FeelowCharacter width="132" height="180" />
               </CharacterWrapper>
               <TextWrapper>
                 <ChatSummary>
                   <h5>대화 내용 요약</h5>
-                  <p>{content.summary}</p>
+                  <p>
+                    {
+                      historys?.find(
+                        (history) => new Date(history.localDate).getDate() === date.getDate(),
+                      ).historySum
+                    }
+                  </p>
                 </ChatSummary>
                 <Horizon />
                 <TodayWord>
                   <h5>오늘의 한마디</h5>
-                  <p>{content.todayWord}</p>
+                  <p>
+                    {
+                      historys?.find(
+                        (history) => new Date(history.localDate).getDate() === date.getDate(),
+                      ).todaySentence
+                    }
+                  </p>
                 </TodayWord>
               </TextWrapper>
             </ContentBox>
