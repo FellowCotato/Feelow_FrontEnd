@@ -107,7 +107,7 @@ const Modal = ({ isOpen, setModalOpen, modalText, selectedItemAccessory, selecte
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: ${(props) => (props.noCotton ? "2vh" : "35vh")};
+    margin-top: ${(props) => (props.noCotton ? "2vh" : "300px")};
 
     color: #000;
     text-align: center;
@@ -154,12 +154,12 @@ const Modal = ({ isOpen, setModalOpen, modalText, selectedItemAccessory, selecte
   `;
 
   const PurchaseButton = styled.button`
-    width: 10vw;
-    height: 5vh;
+    width: 84px;
+    height: 31px;
     border-radius: 40px;
     background: var(--Point-Color, #d7ab6e);
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    margin-left: 500px;
+    margin-left: 600px;
     color: #fff;
     font-family: Pretendard;
     font-size: 16px;
@@ -179,8 +179,8 @@ const Modal = ({ isOpen, setModalOpen, modalText, selectedItemAccessory, selecte
   `;
 
   const CancelButton = styled.button`
-    width: 10vw;
-    height: 5vh;
+    width: 84px;
+    height: 31px;
     border-radius: 40px;
     background: var(--Point-Color, #d7ab6e);
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
@@ -203,6 +203,7 @@ const Modal = ({ isOpen, setModalOpen, modalText, selectedItemAccessory, selecte
   const [lastClickedItem, setLastClickedItem] = useState(null);
   const [purchaseClicked, setPurchaseClicked] = useState(false);
   const [noCotton, setNoCotton] = useState(false);
+  const [lastClickedType, setLastClickedType] = useState(null);
 
   useEffect(() => {
     const handleClick = (e) => {
@@ -215,6 +216,19 @@ const Modal = ({ isOpen, setModalOpen, modalText, selectedItemAccessory, selecte
   }, [modalRef]);
 
   useEffect(() => {
+    setLastClickedItem(selectedItemAccessory || selectedItemCover);
+  }, [selectedItemAccessory, selectedItemCover]);
+  console.log(selectedItemAccessory);
+
+  useEffect(() => {
+    if (selectedItemAccessory !== null || selectedItemCover !== null) {
+      // 어떤 타입인지 확인하여 lastClickedType에 설정
+      setLastClickedType(selectedItemAccessory ? "accessory" : "cover");
+    } else {
+      setLastClickedType(null);
+    }
+
+    // 선택한 항목이 변경될 때마다 모달 이미지 업데이트
     setLastClickedItem(selectedItemAccessory || selectedItemCover);
   }, [selectedItemAccessory, selectedItemCover]);
 
@@ -245,24 +259,20 @@ const Modal = ({ isOpen, setModalOpen, modalText, selectedItemAccessory, selecte
             {lastClickedItem && !purchaseClicked && (
               <FeelowCharacterImage
                 src={lastClickedItem.coverImage}
+                isAccessory={lastClickedType === "accessory"}
                 style={{
                   zIndex: 1,
-                  width: lastClickedItem.type === "accessory" ? "8vw" : "10vw",
-                  height: lastClickedItem.type === "accessory" ? "18vh" : "15.3vh",
-                  marginTop: lastClickedItem.type === "accessory" ? "0" : "4.5vh",
-                  marginLeft: lastClickedItem.type === "accessory" ? "0" : "0.2vw",
+                  width: lastClickedType === "accessory" ? "10vw" : "10vw",
+                  height: lastClickedType === "accessory" ? "20.5vh" : "15.3vh",
+                  marginTop: lastClickedType === "accessory" ? "0" : "4.5vh",
+                  marginLeft: lastClickedType === "accessory" ? "0" : "0.2vw",
                 }}
                 alt={lastClickedItem.type}
               />
             )}
-            {!lastClickedItem ||
-              (selectedItemCover && !purchaseClicked && (
-                <FeelowCharacterImage
-                  src={character}
-                  style={{ zIndex: 0 }}
-                  alt="Feelow_Character"
-                />
-              ))}
+            {lastClickedItem && selectedItemCover && !selectedItemAccessory && !purchaseClicked && (
+              <FeelowCharacterImage src={character} style={{ zIndex: 0 }} alt="Feelow_Character" />
+            )}
             <CottonDescription noCotton={purchaseClicked}>
               {purchaseClicked
                 ? "Feelow와 채팅을 하여 열심히 솜뭉치를 모아보세요."

@@ -1,13 +1,9 @@
-// Item.jsx
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Pagination from "../../components/Pagination";
 import { ItemBox, Title, Line, Cover, PointContainer, CottonPoint, NullContainer } from "./styles";
 import character from "../../assets/feelow_character.svg";
 import cotton from "../../assets/cotton.png";
 import nullImg from "../../assets/x_img.png";
-
-// accessory
 import accessory1 from "../../assets/accessory1.png";
 import accessory2 from "../../assets/accessory2.png";
 import accessory3 from "../../assets/accessory3.png";
@@ -16,14 +12,11 @@ import accessory5 from "../../assets/accessory5.png";
 import accessory6 from "../../assets/accessory6.png";
 import accessory7 from "../../assets/accessory7.png";
 import accessory8 from "../../assets/accessory8.png";
-
-// feelow cover
 import cover1 from "../../assets/feelow_cover1.png";
 import cover2 from "../../assets/feelow_cover2.png";
 import cover3 from "../../assets/feelow_cover3.png";
 import cover4 from "../../assets/feelow_cover4.png";
 import cover5 from "../../assets/feelow_cover5.png";
-// coupon
 import couponImage from "../../assets/coupon.png";
 
 const accessoryImages = [
@@ -41,7 +34,7 @@ const coverImages = [cover1, cover2, cover3, cover4, cover5];
 const coupon = [
   { title: "청소 면제", point: "200개" },
   { title: "지각 1회 허용", point: "200개" },
-  { title: "원하는 자리 선택", point: "200개" },
+  { title: "원하는 자리", point: "200개" },
   { title: null, point: null },
   { title: null, point: null },
   { title: null, point: null },
@@ -74,8 +67,13 @@ const accessory = [
 const itemsPerPage = 10;
 
 export const Item = ({ onSelectItemAccessory, onSelectItemCover, selectedCategory }) => {
-  console.log("Selected Category", selectedCategory);
   const [currentPage, setCurrentPage] = useState(0);
+  const [selectedItems, setSelectedItems] = useState(Array(8).fill(false));
+
+  useEffect(() => {
+    // 커버에서 악세서리로 카테고리가 변경될 때 selectedItems 초기화
+    setSelectedItems(Array(8).fill(false));
+  }, [selectedCategory]);
 
   const handlePageClick = ({ selected }) => {
     setCurrentPage(selected);
@@ -102,6 +100,9 @@ export const Item = ({ onSelectItemAccessory, onSelectItemCover, selectedCategor
       default:
         break;
     }
+
+    const updatedSelectedItems = selectedItems.map((item, i) => (i === index ? true : false));
+    setSelectedItems(updatedSelectedItems);
   };
 
   const offset = currentPage * itemsPerPage;
@@ -114,7 +115,11 @@ export const Item = ({ onSelectItemAccessory, onSelectItemCover, selectedCategor
   return (
     <>
       {currentItems.map((item, index) => (
-        <ItemBox key={index} onClick={() => handleItemClick(index)}>
+        <ItemBox
+          key={index}
+          isSelected={selectedItems[index]}
+          onClick={() => handleItemClick(index)}
+        >
           {item.title === null ? (
             <NullContainer>
               <img src={nullImg} alt={"null"} />
