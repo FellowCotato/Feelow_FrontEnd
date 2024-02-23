@@ -90,7 +90,7 @@ const MyPage = () => {
           <FlexBox style={{ flexDirection: "column" }}>
             <LogoName>Feelow</LogoName>
             {memberType === "student" ? (
-              <ButtonBox />
+              <ButtonBox page="profile" />
             ) : (
               <TeacherMenuBar page="profile" grade={userInfo.grade} classNum={userInfo.classNum} />
             )}

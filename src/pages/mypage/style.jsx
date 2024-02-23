@@ -9,7 +9,7 @@ export const FlexBox = styled.div`
 export const AdditionTotalBox = styled.div`
   width: 100%;
   height: 130%;
-  max-width: 510px;
+  /* max-width: 510px; */
 `;
 export const LogoName = styled.div`
   margin: 30px 0px 0px 0px;

@@ -7,6 +7,7 @@ import { ReactComponent as CalendarImg } from "../../assets/calendar_img.svg";
 
 // 코튼 모달 이쪽으로 빼야함
 
+// eslint-disable-next-line no-unused-vars
 const ButtonBox = ({ cottonCount, page, setIsCottonModalOpen }) => {
   const [isStoreActive, setIsStoreActive] = useState(page === "store");
   const [isProfileActive, setIsProfileActive] = useState(page === "profile");
@@ -23,7 +24,7 @@ const ButtonBox = ({ cottonCount, page, setIsCottonModalOpen }) => {
       <ButtonContainer>
         <Cotton onClick={() => setIsCottonModalOpen(true)}>
           <img src={cotton} alt="cotton" />
-          <p className="cotton-counter">{`${cottonCount}개`}</p>
+          <p className="cotton-counter">{`${localStorage.getItem("cotton")}개`}</p>
         </Cotton>
         <Buttons>
           <Button
@@ -36,7 +37,7 @@ const ButtonBox = ({ cottonCount, page, setIsCottonModalOpen }) => {
             <p>상점</p>
           </Button>
           <Button
-            to="/profile"
+            to="/mypage"
             color={isProfileActive ? "#D7AB6E" : page === "chatting" ? "#B19B8F" : "#B0B0B0"}
           >
             <ProfileImg
