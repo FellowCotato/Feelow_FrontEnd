@@ -17,7 +17,7 @@ import Pagination from "react-js-pagination";
 import "./paging.css";
 import { StudentComponent } from "./component/StudentsComponent";
 import useWindowSize from "../../hook/WindowSize";
-import TeacherMenu from "../../layouts/TeacherMenuBar";
+import TeacherMenuBar from "../../layouts/TeacherMenuBar";
 
 const TeacherPage = () => {
   const token = localStorage.getItem("token");
@@ -51,195 +51,202 @@ const TeacherPage = () => {
 
   const getStudentList = async () => {
     try {
-      // await GetStudentListApi(memberId, token).then((res) => {
-      //   console.log(res);
-      // });
+      console.log(token);
+      await GetStudentListApi(memberId, token).then((res) => {
+        console.log(res);
+        if (res.data.statusCode === 200) {
+          setGrade(res.data.data.grade);
+          setClassNum(res.data.data.classNum);
+          setStudentList(res.data.data.students);
+          setTotalPage(Math.ceil(studentList.length / perPage));
+        }
+      });
 
-      setGrade("2");
-      setClassNum("1");
-      setStudentList([
-        {
-          studentId: 1,
-          studentNum: 1,
-          studentImg: character_img,
-          studentName: "김가은",
-        },
-        {
-          studentId: 2,
-          studentNum: 1,
-          studentImg: character_img,
-          studentName: "김가연",
-        },
-        {
-          studentId: 3,
-          studentNum: 1,
-          studentImg: character_img,
-          studentName: "박가은",
-        },
-        {
-          studentId: 4,
-          studentNum: 1,
-          studentImg: character_img,
-          studentName: "박가은",
-        },
-        {
-          studentId: 5,
-          studentNum: 1,
-          studentImg: character_img,
-          studentName: "박가은",
-        },
-        {
-          studentId: 6,
-          studentNum: 1,
-          studentImg: character_img,
-          studentName: "박가은",
-        },
-        {
-          studentId: 7,
-          studentNum: 1,
-          studentImg: character_img,
-          studentName: "박가은",
-        },
-        {
-          studentId: 8,
-          studentNum: 1,
-          studentImg: character_img,
-          studentName: "박가은",
-        },
-        {
-          studentId: 9,
-          studentNum: 1,
-          studentImg: character_img,
-          studentName: "박가은",
-        },
-        {
-          studentId: 10,
-          studentNum: 1,
-          studentImg: character_img,
-          studentName: "박가은",
-        },
-        {
-          studentId: 11,
-          studentNum: 1,
-          studentImg: character_img,
-          studentName: "박가은",
-        },
-        {
-          studentId: 12,
-          studentNum: 1,
-          studentImg: character_img,
-          studentName: "박가은",
-        },
-        {
-          studentId: 13,
-          studentNum: 1,
-          studentImg: character_img,
-          studentName: "박가은",
-        },
-        {
-          studentId: 14,
-          studentNum: 1,
-          studentImg: character_img,
-          studentName: "박가은",
-        },
-        {
-          studentId: 15,
-          studentNum: 1,
-          studentImg: character_img,
-          studentName: "박가은",
-        },
-        {
-          studentId: 16,
-          studentNum: 1,
-          studentImg: character_img,
-          studentName: "박가은",
-        },
-        {
-          studentId: 17,
-          studentNum: 1,
-          studentImg: character_img,
-          studentName: "박가은",
-        },
-        {
-          studentId: 18,
-          studentNum: 1,
-          studentImg: character_img,
-          studentName: "박가은",
-        },
-        {
-          studentId: 19,
-          studentNum: 1,
-          studentImg: character_img,
-          studentName: "박가은",
-        },
-        {
-          studentId: 20,
-          studentNum: 1,
-          studentImg: character_img,
-          studentName: "박가은",
-        },
-        {
-          studentId: 21,
-          studentNum: 1,
-          studentImg: character_img,
-          studentName: "박가은",
-        },
-        {
-          studentId: 22,
-          studentNum: 1,
-          studentImg: character_img,
-          studentName: "박가은",
-        },
-        {
-          studentId: 23,
-          studentNum: 1,
-          studentImg: character_img,
-          studentName: "박가은",
-        },
-        {
-          studentId: 24,
-          studentNum: 1,
-          studentImg: character_img,
-          studentName: "박가은",
-        },
-        {
-          studentId: 25,
-          studentNum: 1,
-          studentImg: character_img,
-          studentName: "박가은",
-        },
-        {
-          studentId: 26,
-          studentNum: 1,
-          studentImg: character_img,
-          studentName: "박가은",
-        },
-        {
-          studentId: 27,
-          studentNum: 1,
-          studentImg: character_img,
-          studentName: "박가은",
-        },
-        {
-          studentId: 28,
-          studentNum: 1,
-          studentImg: character_img,
-          studentName: "박가은",
-        },
-        {
-          studentId: 29,
-          studentNum: 1,
-          studentImg: character_img,
-          studentName: "박가은",
-        },
-        {
-          studentId: 30,
-          studentNum: 1,
-          studentImg: character_img,
-          studentName: "박가은",
-        },
-      ]);
-      setTotalPage(Math.ceil(studentList.length / perPage));
+      // setGrade("2");
+      // setClassNum("1");
+      // setStudentList([
+      //   {
+      //     studentId: 1,
+      //     studentNum: 1,
+      //     studentImg: character_img,
+      //     studentName: "김가은",
+      //   },
+      //   {
+      //     studentId: 2,
+      //     studentNum: 1,
+      //     studentImg: character_img,
+      //     studentName: "김가연",
+      //   },
+      //   {
+      //     studentId: 3,
+      //     studentNum: 1,
+      //     studentImg: character_img,
+      //     studentName: "박가은",
+      //   },
+      //   {
+      //     studentId: 4,
+      //     studentNum: 1,
+      //     studentImg: character_img,
+      //     studentName: "박가은",
+      //   },
+      //   {
+      //     studentId: 5,
+      //     studentNum: 1,
+      //     studentImg: character_img,
+      //     studentName: "박가은",
+      //   },
+      //   {
+      //     studentId: 6,
+      //     studentNum: 1,
+      //     studentImg: character_img,
+      //     studentName: "박가은",
+      //   },
+      //   {
+      //     studentId: 7,
+      //     studentNum: 1,
+      //     studentImg: character_img,
+      //     studentName: "박가은",
+      //   },
+      //   {
+      //     studentId: 8,
+      //     studentNum: 1,
+      //     studentImg: character_img,
+      //     studentName: "박가은",
+      //   },
+      //   {
+      //     studentId: 9,
+      //     studentNum: 1,
+      //     studentImg: character_img,
+      //     studentName: "박가은",
+      //   },
+      //   {
+      //     studentId: 10,
+      //     studentNum: 1,
+      //     studentImg: character_img,
+      //     studentName: "박가은",
+      //   },
+      //   {
+      //     studentId: 11,
+      //     studentNum: 1,
+      //     studentImg: character_img,
+      //     studentName: "박가은",
+      //   },
+      //   {
+      //     studentId: 12,
+      //     studentNum: 1,
+      //     studentImg: character_img,
+      //     studentName: "박가은",
+      //   },
+      //   {
+      //     studentId: 13,
+      //     studentNum: 1,
+      //     studentImg: character_img,
+      //     studentName: "박가은",
+      //   },
+      //   {
+      //     studentId: 14,
+      //     studentNum: 1,
+      //     studentImg: character_img,
+      //     studentName: "박가은",
+      //   },
+      //   {
+      //     studentId: 15,
+      //     studentNum: 1,
+      //     studentImg: character_img,
+      //     studentName: "박가은",
+      //   },
+      //   {
+      //     studentId: 16,
+      //     studentNum: 1,
+      //     studentImg: character_img,
+      //     studentName: "박가은",
+      //   },
+      //   {
+      //     studentId: 17,
+      //     studentNum: 1,
+      //     studentImg: character_img,
+      //     studentName: "박가은",
+      //   },
+      //   {
+      //     studentId: 18,
+      //     studentNum: 1,
+      //     studentImg: character_img,
+      //     studentName: "박가은",
+      //   },
+      //   {
+      //     studentId: 19,
+      //     studentNum: 1,
+      //     studentImg: character_img,
+      //     studentName: "박가은",
+      //   },
+      //   {
+      //     studentId: 20,
+      //     studentNum: 1,
+      //     studentImg: character_img,
+      //     studentName: "박가은",
+      //   },
+      //   {
+      //     studentId: 21,
+      //     studentNum: 1,
+      //     studentImg: character_img,
+      //     studentName: "박가은",
+      //   },
+      //   {
+      //     studentId: 22,
+      //     studentNum: 1,
+      //     studentImg: character_img,
+      //     studentName: "박가은",
+      //   },
+      //   {
+      //     studentId: 23,
+      //     studentNum: 1,
+      //     studentImg: character_img,
+      //     studentName: "박가은",
+      //   },
+      //   {
+      //     studentId: 24,
+      //     studentNum: 1,
+      //     studentImg: character_img,
+      //     studentName: "박가은",
+      //   },
+      //   {
+      //     studentId: 25,
+      //     studentNum: 1,
+      //     studentImg: character_img,
+      //     studentName: "박가은",
+      //   },
+      //   {
+      //     studentId: 26,
+      //     studentNum: 1,
+      //     studentImg: character_img,
+      //     studentName: "박가은",
+      //   },
+      //   {
+      //     studentId: 27,
+      //     studentNum: 1,
+      //     studentImg: character_img,
+      //     studentName: "박가은",
+      //   },
+      //   {
+      //     studentId: 28,
+      //     studentNum: 1,
+      //     studentImg: character_img,
+      //     studentName: "박가은",
+      //   },
+      //   {
+      //     studentId: 29,
+      //     studentNum: 1,
+      //     studentImg: character_img,
+      //     studentName: "박가은",
+      //   },
+      //   {
+      //     studentId: 30,
+      //     studentNum: 1,
+      //     studentImg: character_img,
+      //     studentName: "박가은",
+      //   },
+      // ]);
+      // setTotalPage(Math.ceil(studentList.length / perPage));
     } catch (err) {
       console.log(err);
     }
@@ -263,7 +270,7 @@ const TeacherPage = () => {
           <FlexBox style={{ flexDirection: "column" }}>
             <LogoName>Feelow</LogoName>
             {/* <ButtonBox /> */}
-            <TeacherMenu page="studentList" grade={grade} classNum={classNum} />
+            <TeacherMenuBar page="studentList" grade={grade} classNum={classNum} />
           </FlexBox>
         </AdditionTotalBox>
         <UserInfoComponent>

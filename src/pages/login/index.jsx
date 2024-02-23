@@ -1,5 +1,5 @@
 import React from "react";
-import Background from "../../components/BackGround";
+import Background from "../../components/Background/BackGround";
 import {
   FlexBox,
   ButtonContainer,

@@ -5,10 +5,10 @@ export const StudentDiv = ({ item, perPage }) => {
   return (
     <Box perPage={perPage}>
       <BoxTop>
-        {item.studentId} {item.studentName}
+        {item.student_number} {item.name}
       </BoxTop>
       <BoxLine />
-      <BoxImg src={item.studentImg} alt="character" />
+      <BoxImg src={item.characterImagePath} alt="character" />
     </Box>
   );
 };
@@ -66,14 +66,15 @@ const BoxLine = styled.div`
 `;
 
 const BoxImg = styled.img`
-  width: 54.78%;
+  width: 54.87%;
+  /* height: 50.4%; */
   object-fit: cover;
   flex-shrink: 0;
   margin: 34px 0px 0px 0px;
 
   @media screen and (max-width: 768px) {
-    width: 56.6%;
-
+    width: 57.547%;
+    /* height: 54.3%; */
     margin: 16px 0px 0px 0px;
   }
 `;

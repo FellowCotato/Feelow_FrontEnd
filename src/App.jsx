@@ -11,6 +11,7 @@ import MyPage from "./pages/mypage";
 import LoginComplete from "./pages/loginComplete";
 import Calendar from "./pages/Calendar";
 import TeacherPage from "./pages/teacher";
+import Shop from "./pages/shop/index";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/goto/addition" element={<LoginComplete />}></Route>
           <Route path="/calendar" element={<Calendar />}></Route>
           <Route path="/teacher" element={<TeacherPage />}></Route>
+          <Route path="/store" element={<Shop />}></Route>
         </Routes>
       </Router>
     </RecoilRoot>
