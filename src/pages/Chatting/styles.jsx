@@ -12,7 +12,7 @@ export const ChattingWrapper = styled.div`
 export const ChattingContainer = styled.div`
   width: 60%;
 
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 768px) {
     width: 90%;
   }
 `;

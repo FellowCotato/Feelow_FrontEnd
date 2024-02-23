@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   CloseButton,
   CottonDescription,
@@ -12,12 +12,18 @@ import cotton from "../../../assets/cotton.png";
 import close_icon from "../../../assets/close_icon.svg";
 
 const CottonModal = ({ isOpen, setModalOpen }) => {
+  const [isVisible, setIsVisible] = useState(true);
+
   const modalRef = useRef(null);
 
   useEffect(() => {
     const handleClick = (e) => {
       if (modalRef.current && !modalRef.current.contains(e.target)) {
-        setModalOpen(false);
+        setIsVisible(false);
+        setTimeout(() => {
+          setModalOpen(false);
+          setIsVisible(true);
+        }, 300);
       }
     };
     window.addEventListener("mousedown", handleClick);
@@ -31,7 +37,7 @@ const CottonModal = ({ isOpen, setModalOpen }) => {
   return (
     <ModalOverlay>
       <ModalBackground ref={modalRef}>
-        <ModalBox>
+        <ModalBox visible={isVisible ? "visible" : "non-visible"}>
           <CloseButton src={close_icon} alt="close-icon" onClick={() => setModalOpen(false)} />
           <CottonImage src={cotton} alt="cotton" />
           <CottonTitle>솜뭉치</CottonTitle>

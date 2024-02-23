@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import { ReactComponent as CloseIcon } from "../../../assets/close_icon.svg";
 
 export const ModalOverlay = styled.div`
@@ -11,6 +11,25 @@ export const ModalOverlay = styled.div`
 
   @media only screen and (max-width: 768px) {
     background: rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+  }
+`;
+
+const slideUp = keyframes`
+  from {
+    transform: translateY(400px);
+  }
+  to {
+    transform: translateY(0);
+  }
+`;
+
+const slideDown = keyframes`
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(400px);
   }
 `;
 
@@ -36,7 +55,9 @@ export const ModalBackground = styled.div`
   @media only screen and (max-width: 768px) {
     width: 100%;
     height: 440px;
-    bottom: -40px;
+    bottom: calc(-40px + ${(props) => props.offset}px);
+    ${(props) => props.visible === "visible" && "transition: bottom 0.3s ease"};
+    animation: ${(props) => (props.visible === "invisible" ? slideDown : slideUp)} 0.3s ease;
   }
 `;
 
@@ -67,7 +88,7 @@ export const CloseButton = styled(CloseIcon)`
 export const CloseBar = styled.div`
   margin-top: 16px;
   width: 54px;
-  height: 4px;
+  height: 8px;
   border-radius: 2.5px;
   background: #b0b0b0;
 

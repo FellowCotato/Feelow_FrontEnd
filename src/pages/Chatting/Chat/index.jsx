@@ -8,7 +8,7 @@ import {
 } from "./styles";
 
 const Chat = ({ message }) => {
-  const sender = message.sender;
+  const sender = message?.sender;
 
   return (
     <ChatContainer sender={sender}>

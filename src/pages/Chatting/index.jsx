@@ -6,31 +6,57 @@ import ChatList from "./ChatList";
 import ChatBox from "./ChatBox";
 import CottonAlarm from "./CottonAlarm";
 import CottonModal from "./CottonModal";
-
-// 임시 데이터 타입
-const user = { name: "냠냠", cotton: 0 };
-const initialContent = ["제일 좋아하는 색깔이 뭐야?", "오늘 하루는 어땠어?", "오늘 급식은 먹었어?"];
+import api from "../../utils/api";
+import dayjs from "dayjs";
 
 const Chatting = () => {
+  const [user, setUser] = useState({ name: localStorage.getItem("nickname"), cotton: -1 });
   const [isCottonAlarmOpen, setIsCottonAlarmOpen] = useState(false);
   const [isCottoModalOpen, setIsCottonModalOpen] = useState(false);
 
-  const [messages, setMessages] = useState([
-    {
-      id: 0,
-      sender: "bot",
-      content: `안녕 ${user.name}야~! ${initialContent[Math.floor(Math.random() * 3)]}`,
-    },
-  ]);
+  const [messages, setMessages] = useState([]);
   const [messageId, setMessageId] = useState(1);
 
   useEffect(() => {
-    // 오늘 최초 접촉인면 then
-    setIsCottonAlarmOpen(true);
+    api
+      .get(`/api/chat/${localStorage.getItem("memberId")}/${dayjs().format("YYYY-MM-DD")}`)
+      .then((res) => {
+        if (user.cotton === -1 || user.cotton !== res.data.data.at(-1).point) {
+          setIsCottonAlarmOpen(true);
+          localStorage.setItem("cotton", res.data.data.at(-1).point);
+        }
+
+        setUser({ name: localStorage.getItem("nickname"), cotton: res.data.data.at(-1).point });
+        const history = [];
+        res.data.data.map((data, idx) => {
+          if (idx === 0) {
+            history.push({
+              id: 1,
+              sender: "bot",
+              content: data.response,
+            });
+          } else {
+            history.push({
+              id: data.conversationCount * 2 - 2,
+              sender: user.name,
+              content: data.input,
+            });
+            history.push({
+              id: data.conversationCount * 2 - 1,
+              sender: "bot",
+              content: data.response,
+            });
+          }
+        });
+
+        setMessages(history);
+        setMessageId(history.at(-1).id + 1);
+      })
+      .catch((err) => console.error(err));
   }, []);
 
   const scrollRef = useRef(null);
-
+  console.log(messages);
   return (
     <ChattingWrapper>
       <Header />

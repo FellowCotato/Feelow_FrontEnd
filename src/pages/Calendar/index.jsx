@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   ArrowFront,
   CalendarInnerWrapper,
@@ -11,15 +11,25 @@ import ButtonBox from "../../layouts/ButtonBox";
 import { ReactComponent as ArrowBack } from "../../assets/arrow_back.svg";
 import TileContent from "./TileContent";
 import CalendarModal from "./CalendarModal";
-
-/*
-오늘 날짜 숫자 의도적으로 내린거임?
-호버 효과 줄지
-*/
+import api from "../../utils/api";
 
 const Calendar = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalDate, setModalDate] = useState(null);
+  const [historys, setHistorys] = useState();
+
+  useEffect(() => {
+    api
+      .get(
+        `/api/chat/${localStorage.getItem("memberId")}/${new Date().getFullYear()}/${
+          new Date().getMonth() + 1
+        }`,
+      )
+      .then((res) => {
+        console.log(res);
+        setHistorys(res.data);
+      });
+  }, []);
 
   const onClickTile = useCallback((date) => {
     setModalOpen(true);
@@ -29,7 +39,7 @@ const Calendar = () => {
   return (
     <CalendarWrapper>
       <Header />
-      <ButtonBox cottonCount={3} page="calendar" />
+      <ButtonBox cottonCount={localStorage.getItem("cotton")} page="calendar" />
       <CalendarInnerWrapper>
         <CalendarBox>
           <StyledCalendar
@@ -51,10 +61,16 @@ const Calendar = () => {
                 activeStartDate={activeStartDate}
                 date={date}
                 onClickTile={onClickTile}
+                historys={historys}
               />
             )}
           />
-          <CalendarModal modalOpen={modalOpen} setModalOpen={setModalOpen} date={modalDate} />
+          <CalendarModal
+            modalOpen={modalOpen}
+            setModalOpen={setModalOpen}
+            date={modalDate}
+            historys={historys}
+          />
         </CalendarBox>
       </CalendarInnerWrapper>
     </CalendarWrapper>
