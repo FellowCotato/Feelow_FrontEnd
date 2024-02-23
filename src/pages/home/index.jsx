@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 
 import feelow_logo from "../../assets/home_logo.png";
 
-import Background from "../../components/BackGround";
+import Background from "../../components/Background/BackGround";
 
 const Home = () => {
   const navigate = useNavigate();
