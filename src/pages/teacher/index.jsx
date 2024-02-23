@@ -11,7 +11,7 @@ import {
 import ButtonBox from "../../layouts/ButtonBox";
 import { useStateManager } from "react-select";
 import { GetStudentListApi } from "../../utils/Teacher";
-import character_img from "../../assets/feelow_character.png";
+import character_img from "../../assets/feelow_character.svg";
 import { StudentDiv } from "./component/StudentDiv";
 import Pagination from "react-js-pagination";
 import "./paging.css";
