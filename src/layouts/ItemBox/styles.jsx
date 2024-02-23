@@ -16,8 +16,10 @@ export const ItemBox = styled.div`
   ${(props) =>
     props.isSelected &&
     css`
-      border: 2px solid var(--Point-Color, #d7ab6e);
-      background: #fff;
+      border-radius: 10px;
+      border: 3px solid var(--Point-Color, #d7ab6e);
+      background: var(--Sub-Color0, #fffbf8);
+      box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
     `}
 `;
 
