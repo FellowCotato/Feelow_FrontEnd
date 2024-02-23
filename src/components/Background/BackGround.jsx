@@ -25,8 +25,8 @@ const Pattern = styled.div`
     props.color === "brown"
       ? "rgba(215, 171, 110, 0.4)"
       : props.color === "green"
-        ? "rgba(128, 159, 128, 0.40)"
-        : "transparent"};
+      ? "rgba(128, 159, 128, 0.40)"
+      : "transparent"};
   filter: blur(10.42vw);
 
   ${(props) =>

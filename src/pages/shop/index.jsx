@@ -50,8 +50,8 @@ const IndexPage = () => {
           selectedItemAccessory
             ? selectedItemAccessory.item.title
             : selectedItemCover
-              ? selectedItemCover.item.title
-              : ""
+            ? selectedItemCover.item.title
+            : ""
         }
         selectedItemAccessory={selectedItemAccessory}
         selectedItemCover={selectedItemCover}
