@@ -13,8 +13,9 @@ import {
 import Header from "../../layouts/Header";
 import ButtonBox from "../../layouts/ButtonBox";
 import { Item } from "../../layouts/ItemBox";
-import character from "../../assets/character_shop.png";
 import Modal from "../../components/Modal";
+import frame from "../../assets/feelow_frame.png";
+import character from "../../assets/feelow_character.png";
 
 const IndexPage = () => {
   const user = { name: "냠냠", cotton: 0 };
@@ -59,22 +60,18 @@ const IndexPage = () => {
         <StylingContainer>
           <Character>
             <div style={{ position: "relative", width: "17.97vw", height: "31.94vh" }}>
-              <img
-                src={character}
-                alt="Feelow_Character"
-                style={{ width: "100%", height: "100%" }}
-              />
+              <img src={frame} alt="Feelow_Frame" style={{ width: "100%", height: "100%" }} />
               {selectedItemAccessory && (
                 <img
                   src={selectedItemAccessory.coverImage}
                   alt="Accessory cover"
                   style={{
-                    width: "10.6vw",
-                    height: "26vh",
+                    width: "10.4vw",
+                    height: "27vh",
                     position: "absolute",
                     top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
+                    left: "51.5%",
+                    transform: "translate(-55%, -52%)",
                     zIndex: 1,
                   }}
                 />
@@ -84,13 +81,28 @@ const IndexPage = () => {
                   src={selectedItemCover.coverImage}
                   alt="Cover"
                   style={{
-                    width: "10.5vw",
+                    width: "10.3vw",
                     height: "14.8vh",
                     position: "absolute",
                     top: "65%",
                     left: "50%",
                     transform: "translate(-50%, -50%)",
                     zIndex: 1,
+                  }}
+                />
+              )}
+              {!selectedItemAccessory && (
+                <img
+                  src={character}
+                  alt="Feelow_Character"
+                  style={{
+                    width: "10.4vw",
+                    height: "26vh",
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-51%, -50%)",
+                    zIndex: 0,
                   }}
                 />
               )}
